@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Matematika",
+    "shortName": "ma",
+    "description": "Matematika (z řeckého μαθηματικός (mathématikos) = milující poznání; μάθημα (mathéma) = věda, vědění, poznání) je věda zabývající se z formálního hlediska kvantitou, strukturou, prostorem a změnou. Matematika je též popisována jako disciplína, jež se zabývá vytvářením abstraktních entit a vyhledáváním zákonitých vztahů mezi nimi.",
+    "id": "495a2f53e28edd18"
+  },
+  {
+    "name": "Fyzika",
+    "shortName": "fy",
+    "description": "Fyzika (z řeckého φυσικός (fysikos): přírodní, ze základu φύσις (fysis): příroda, archaicky též silozpyt) je exaktní vědní obor, který zkoumá zákonitosti přírodních jevů. Popisuje vlastnosti a projevy hmoty, antihmoty, vakua, přírodních sil, světla i neviditelného záření, tepla, zvuku atd.",
+    "id": "e3c7b689a47e76b0"
+  },
+  {
+    "name": "Chemie",
+    "shortName": "ch",
+    "description": "Chemie (řecky χημεία; archaicky též lučba) je vědecké zkoumání vlastností a chování hmoty. Je to přírodní věda, která zahrnuje prvky, z nichž se hmota skládá, až po sloučeniny složené z atomů, molekul a iontů: jejich složení, strukturu, vlastnosti, chování a změny, kterými procházejí při reakci s jinými látkami.",
+    "id": "ae3f5077053c5579"
+  },
+  {
+    "name": "Dějepis",
+    "shortName": "de",
+    "description": "Dějepis (historická věda) je humanitní a společenská věda zkoumající dějiny (historii) člověka a jeho civilizace na základě studia různých pramenů a s použitím rozličných metod.",
+    "id": "dc3fd3109eb041ff"
+  },
+  {
+    "name": "Angličtina",
+    "shortName": "aj",
+    "description": "",
+    "id": "0258b9979e055af1"
+  },
+  {
+    "name": "Němčina",
+    "shortName": "nj",
+    "description": "",
+    "id": "3f9e05bc4aaa380b"
+  },
+  {
+    "name": "Tělesná výchova",
+    "shortName": "tv",
+    "description": "Tělesná výchova (tělovýchova) je jedna ze složek výchovy, která poskytuje základní pohybové vzdělání, zlepšuje zdraví a zvyšuje fyzickou kondici.",
+    "id": "fe9919c1c95564cc"
+  }
+]

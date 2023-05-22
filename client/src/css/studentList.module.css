@@ -1,0 +1,12 @@
+.searchInput {
+  max-width: 100px;
+}
+
+.searchButton {
+  margin-right: 8px;
+}
+
+.studentList {
+  max-width: 100%;
+  overflow: auto;
+}
