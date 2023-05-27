@@ -16,6 +16,7 @@ const port = process.env.PORT || 8000;
 app.use(express.json()); // podpora pro application/json
 app.use(express.urlencoded({ extended: true })); // podpora pro application/x-www-form-urlencoded
 
+// Enable Cross Origin Resource Sharing
 app.use(cors())
 
 //jednoduchá definice routy s HTTP metodou GET, která pouze navrací text
