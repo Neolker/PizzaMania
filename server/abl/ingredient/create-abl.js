@@ -8,10 +8,11 @@ let dao = new IngredientDao(
 let schema = {
   type: "object",
   properties: {
-    amount: { type: "number" },
+    id: { type: "string" },
+    name: { type: "string" },
     unit: { type: "string" },
   },
-  required: ["amount", "unit"]
+  required: ["name", "unit"]
 };
 
 async function CreateAbl(req, res) {

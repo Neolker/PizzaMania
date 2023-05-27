@@ -13,9 +13,10 @@ let ingredientDao = new IngredientDao(
 let schema = {
   type: "object",
   properties: {
+    id: { type: "string" },
     name: { type: "string", minLength: 5 },
     description: { type: "string" },
-    procedure: { type: "string", minLength: 10},
+    procedure: { type: "string", minLength: 10 },
     ingredients: {
       type: "array",
       minItems: 0,
@@ -41,7 +42,7 @@ async function CreateAbl(req, res) {
     if (valid) {
       let recipe = req.body;
 
-      for(let ingredient of recipe.ingredients) {
+      for (let ingredient of recipe.ingredients) {
         const exists = await ingredientDao.getIngredient(ingredient.id);
 
         if (!exists) {
@@ -49,7 +50,7 @@ async function CreateAbl(req, res) {
             errorMessage: "ingredient with id " + ingredient.id + " does not exist",
             params: req.body,
           });
-          return; 
+          return;
         }
       }
 
