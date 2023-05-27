@@ -13,9 +13,9 @@ let ingredientDao = new IngredientDao(
 let schema = {
   type: "object",
   properties: {
-    name: { type: "string" },
+    name: { type: "string", minLength: 5 },
     description: { type: "string" },
-    imgUri: { type: "string" },
+    procedure: { type: "string", minLength: 10},
     ingredients: {
       type: "array",
       minItems: 0,
@@ -25,9 +25,8 @@ let schema = {
           properties: {
             id: { type: "string" },
             amount: { type: "number" },
-            unit: { type: "string" },
           },
-          required: ["id", "amount", "unit"],
+          required: ["id", "amount"],
         }
       ]
     }

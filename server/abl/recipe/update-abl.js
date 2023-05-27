@@ -25,10 +25,9 @@ let schema = {
           type: "object",
           properties: {
             id: { type: "string" },
-            amount: { type: "number" },
-            unit: { type: "string" },
+            amount: { type: "number" }
           },
-          required: ["id", "amount", "unit"],
+          required: ["id"],
         }
       ]
     }
