@@ -1,0 +1,12 @@
+[
+    {
+        "id": "ING00001",
+        "name": "Těsto",
+        "unit": "g"
+    },
+    {
+        "id": "ING00002",
+        "name": "Protlak",
+        "unit": "ml"
+    }
+]
