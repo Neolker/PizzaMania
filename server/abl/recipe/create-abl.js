@@ -1,54 +1,72 @@
 const path = require("path");
 const Ajv = require("ajv").default;
-const GradeDao = require("../../dao/grade-dao");
-let dao = new GradeDao(
-    path.join(__dirname, "..", "..", "storage", "grades.json")
+const RecipeDao = require("../../dao/recipe-dao");
+let dao = new RecipeDao(
+  path.join(__dirname, "..", "..", "storage", "recipes.json")
 );
-const StudentDao = require("../../dao/student-dao");
-let studentDao = new StudentDao(
-    path.join(__dirname, "..", "..", "storage", "students.json")
-);
-const SubjectDao = require("../../dao/subject-dao");
-let subjectDao = new SubjectDao(
-    path.join(__dirname, "..", "..", "storage", "subjects.json")
+
+const IngredientDao = require("../../dao/ingredient-dao");
+let ingredientDao = new IngredientDao(
+  path.join(__dirname, "..", "..", "storage", "ingredients.json")
 );
 
 let schema = {
-    type: "object",
-    properties: {
-        name: { type: "string", minLength: 5 },
-        description: { type: "string" },
-        procedure: { type: "string", minLength: 15 },
-        ingredients: [
-            {
-                type: "object",
-                id: "string",
-                amount: "number"
-            }
-        ],
-    },
-    required: ["name", "procedure", "ingredients"],
+  type: "object",
+  properties: {
+    name: { type: "string" },
+    description: { type: "string" },
+    imgUri: { type: "string" },
+    ingredients: {
+      type: "array",
+      minItems: 0,
+      items: [
+        {
+          type: "object",
+          properties: {
+            id: { type: "string" },
+            amount: { type: "number" },
+            unit: { type: "string" },
+          },
+          required: ["id", "amount", "unit"],
+        }
+      ]
+    }
+  },
+  required: ["name", "description", "ingredients"],
 };
 
 async function CreateAbl(req, res) {
-    try {
-        const ajv = new Ajv();
-        const valid = ajv.validate(schema, req.body);
-        if (valid) {
-            let classroom = req.body;
-            classroom = await dao.createClassroom(classroom);
-            res.json(classroom);
-        } else {
-            res.status(400).send({
-                errorMessage: "validation of input failed",
-                params: req.body,
-                reason: ajv.errors,
-            });
+  try {
+    const ajv = new Ajv();
+    const valid = ajv.validate(schema, req.body);
+    if (valid) {
+      let recipe = req.body;
+
+      for(let ingredient of recipe.ingredients) {
+        const exists = await ingredientDao.getIngredient(ingredient.id);
+
+        if (!exists) {
+          res.status(400).send({
+            errorMessage: "ingredient with id " + ingredient.id + " does not exist",
+            params: req.body,
+          });
+          return; 
         }
-    } catch (e) {
-        console.log(e);
-        res.status(500).send(e);
+      }
+
+      recipe = await dao.createRecipe(recipe);
+      res.json(recipe);
+    } else {
+      res.status(400).send({
+        errorMessage: "validation of input failed",
+        params: req.body,
+        reason: ajv.errors,
+      });
     }
+  } catch (e) {
+    console.log(e);
+    res.status(500).send(e);
+  }
 }
 
 module.exports = CreateAbl;
