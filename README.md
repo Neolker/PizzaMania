@@ -1,5 +1,4 @@
 # PizzaMania
-
 ## Důležité odkazy ke studiu / projektu
 - [Zadání projektu](https://uuapp.plus4u.net/uu-dockit-maing02/4e68298f1658473e9bf5692272883290/document?documentId=63e66c5ad42df5003627e3d6) obsahuje všechny požadavky na projekt.
 - [Projektový portál](https://uuapp.plus4u.net/uu-dockit-maing02/4e68298f1658473e9bf5692272883290/document?documentId=63e670ee46a3400036cf3231) workshopu, hodnocení, harmonogramu a týmů.
@@ -40,3 +39,100 @@
   - **Client** potom spustíme stejným příkazem `npm start`
   - **Client** by se měl spustit sám v prohlížeči na adrese: http://localhost:3000/
   - Ukončit **client** potom stejnou zkratkou `CTRL + C`
+
+## Dokumentace k API PizzaMania
+
+- **POST** požadavky předávají parametry v JSON formátu v **Body**, většinou jde o data z formulářů
+- **GET** požadavky předávají parametry, které jsou součástí URL (route)
+
+| API | http metoda | vstup | vystup |
+| --- | ----------- | ----- | ------ |
+| TBD | TBD         | TBD   | TBD    |
+| TBD | TBD         | TBD   | TBD    |
+
+## Příklady JSON databází
+### recipes.json
+
+```JSON
+[
+  {
+    "id": "REC-e6823940",
+    "name": "Pizza Margherita",
+    "description": "Klasická pizza",
+    "procedure": "Předehřejte troubu na 220 °C...",
+    "ingredients": [
+      {
+        "id": "ING-239e0305",
+        "amount": 50
+      },
+      {
+        "id": "ING-7ecadb7b",
+        "amount": 10
+      }
+    ]
+  },
+  {
+    "id": "REC-1f1ddb76",
+    "name": "Pizza XXX",
+    "description": "Klasická pizza",
+    "procedure": "Předehřejte troubu na 220 °C...",
+    "ingredients": [
+      {
+        "id": "ING-239e0305",
+        "amount": 25
+      },
+      {
+        "id": "ING-6ff59e25",
+        "amount": 20
+      }
+    ]
+  },
+  {
+    "id": "REC-63c5eb4c",
+    "name": "Pizza TEST",
+    "description": "Klasická pizza",
+    "procedure": "Předehřejte troubu na 220 °C...",
+    "ingredients": [
+      {
+        "id": "ING-239e0305",
+        "amount": 5
+      },
+      {
+        "id": "ING-7c09dfa1",
+        "amount": 15
+      },
+      {
+        "id": "ING-6ff59e25",
+        "amount": 10
+      }
+    ]
+  }
+]
+```
+
+### ingredients.json
+
+```JSON
+[
+  {
+    "id": "ING-239e0305",
+    "name": "Sýr",
+    "unit": "g"
+  },
+  {
+    "id": "ING-7c09dfa1",
+    "name": "Rajčatový protlak",
+    "unit": "ml"
+  },
+  {
+    "id": "ING-6ff59e25",
+    "name": "Šunka",
+    "unit": "g"
+  },
+  {
+    "id": "ING-7ecadb7b",
+    "name": "Salám",
+    "unit": "ks"
+  }
+]
+```
