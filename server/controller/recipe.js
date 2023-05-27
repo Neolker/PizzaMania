@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-const CreateAbl = require("../abl/classroom/create-abl");
-const GetAbl = require("../abl/classroom/get-abl");
-const LoadAbl = require("../abl/classroom/load-abl");
-const UpdateAbl = require("../abl/classroom/update-abl");
-const DeleteAbl = require("../abl/classroom/delete-abl");
-const ListAbl = require("../abl/classroom/list-abl");
+const CreateAbl = require("../abl/recipe/create-abl");
+const GetAbl = require("../abl/recipe/get-abl");
+const LoadAbl = require("../abl/recipe/load-abl");
+const UpdateAbl = require("../abl/recipe/update-abl");
+const DeleteAbl = require("../abl/recipe/delete-abl");
+const ListAbl = require("../abl/recipe/list-abl");
 
 router.post("/create", async (req, res) => {
     await CreateAbl(req, res);

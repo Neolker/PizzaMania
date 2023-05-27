@@ -24,10 +24,8 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.use("/student", studentRouter);
-app.use("/classroom", classroomRouter);
-app.use("/subject", subjectRouter);
-app.use("/grade", gradeRouter);
+app.use("/recipe", studentRouter);
+app.use("/ingredients", classroomRouter);
 
 app.get("/*", (req, res) => {
   res.send("Unknown path!");
