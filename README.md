@@ -45,10 +45,19 @@
 - **POST** požadavky předávají parametry v JSON formátu v **Body**, většinou jde o data z formulářů
 - **GET** požadavky předávají parametry, které jsou součástí URL (route)
 
-| API | http metoda | vstup | vystup |
-| --- | ----------- | ----- | ------ |
-| TBD | TBD         | TBD   | TBD    |
-| TBD | TBD         | TBD   | TBD    |
+| API               | http | vstup                                                           | vystup | příklad |
+| ----------------- | ---- | --------------------------------------------------------------- | ------ | ------- |
+| recipe/create     | POST | `name`, `description`, `(procedure)`, `ingredients: id, amount` | TBD    | ---     |
+| recipe/get        | GET  | `id`                                                            | TBD    | ---     |
+| recipe/update     | POST | `id`, `(amount)`, `(unit)`                                      | TBD    | ---     |
+| recipe/delete     | POST | `id`                                                            | TBD    | ---     |
+| recipe/list       | GET  | -                                                               | TBD    | ---     |
+|                   |      |                                                                 |        |         |
+| ingredient/create | POST | `name`, `unit`                                                  | TBD    | ---     |
+| ingredient/get    | GET  | `id`                                                            | TBD    | ---     |
+| ingredient/update | POST | `id`, `(amount)`, `(unit)`                                      | TBD    | ---     |
+| ingredient/delete | POST | `id`                                                            | TBD    | ---     |
+| ingredient/list   | GET  | -                                                               | TBD    | ---     |
 
 ## Příklady JSON databází
 ### recipes.json
