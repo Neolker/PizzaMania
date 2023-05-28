@@ -1,6 +1,7 @@
 const path = require("path");
 const Ajv = require("ajv").default;
 const IngredientDao = require("../../dao/ingredient-dao");
+const RecipeDao = require("../../dao/recipe-dao");
 let dao = new IngredientDao(path.join(__dirname, "..", "..", "storage", "ingredients.json"));
 
 let schema = {
@@ -20,10 +21,10 @@ async function DeleteAbl(req, res) {
       await dao.deleteIngredient(ingredientId);
       res.json({});
     } else {
-      res.status(500).send({"error":"Validation of input failed: id is required."});
+      res.status(400).send({"error":"Validation of input failed: id is required."});
     }
   } catch (e) {
-    res.status(500).send({"error":e.message});
+    res.status(400).send({"error":e.message});
   }
 }
 

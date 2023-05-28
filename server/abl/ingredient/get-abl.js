@@ -20,14 +20,14 @@ async function GetAbl(req, res) {
       const ingredientId = body.id;
       const ingredient = await dao.getIngredient(ingredientId);
       if (!ingredient) {
-        res.status(500).send({"error":"Ingredient with id "+ingredientId+" does not exist."});
+        res.status(400).send({"error":"Ingredient with id "+ingredientId+" does not exist."});
       }
       res.json(ingredient);
     } else {
-      res.status(500).send({"error":"Validation of input failed: id is required."});
+      res.status(400).send({"error":"Validation of input failed: id is required."});
     }
   } catch (e) {
-    res.status(500).send({"error":e.message});
+    res.status(400).send({"error":e.message});
   }
 }
 

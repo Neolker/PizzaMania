@@ -22,10 +22,10 @@ async function UpdateAbl(req, res) {
       ingredient = await dao.updateIngredient(ingredient);
       res.json(ingredient);
     } else {
-     res.status(500).send({"error":"Validation of input failed: id, name and unit are required, minimal lenght: 2 characters in name and 2 characters in unit."});
+     res.status(400).send({"error":"Validation of input failed: id, name and unit are required, minimal lenght: 2 characters in name and 2 characters in unit."});
     }
   } catch (e) {
-    res.status(500).send({"error":e.message});
+    res.status(400).send({"error":e.message});
   }
 }
 
