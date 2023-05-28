@@ -4,6 +4,8 @@ const path = require("path");
 
 const crypto = require("crypto");
 
+const IngredientDao = require("../dao/ingredient-dao");
+
 const rf = fs.promises.readFile;
 const wf = fs.promises.writeFile;
 
@@ -94,7 +96,96 @@ class RecipeDao {
     /* console.log("cnt: "+cnt); // for debug */
     return cnt;
     }
-    
+   
+  async addIngredientIntoRecipe(ingredient){
+    ingredient.amount=parseInt(ingredient.amount);
+    if(ingredient.amount<1){
+      throw new Error("Amount can not be less than 1. Nothig has been added.");
+      }
+    let recipeList = await this._loadAllRecipes();
+    const recipeIndex = recipeList.findIndex( (b) => b.id === ingredient.id_recipe );
+    if (recipeIndex < 0) {
+      throw new Error("Recipe with given id "+ingredient.id_recipe+" does not exists. Nothig has been added.");
+      }
+    let recipe=recipeList[recipeIndex];
+    recipe.ingredients.forEach(function(ing){
+      if(ing.id==ingredient.id_ingredient){
+        throw new Error("Recipe with given id "+ingredient.id_recipe+" have ingredient id "+ingredient.id_ingredient+". Nothig has been added.");
+        }
+      });
+    let ingredientD=await new IngredientDao(path.join("storage", "ingredients.json"));  
+    let ingredientExist=await ingredientD.getIngredient(ingredient.id_ingredient);  
+    if(!ingredientExist){
+      throw new Error("Ingredient with given id "+ingredient.id_ingredient+" does not exists. Nothig has been added.");
+      }
+    recipe.ingredients.push({
+      "id": ingredient.id_ingredient,
+      "amount": ingredient.amount
+    });  
+    recipeList[recipeIndex] = {
+        ...recipeList[recipeIndex],
+        ...recipe,
+      };
+    await wf(this._getStorageLocation(),JSON.stringify(recipeList, null, 2));
+    return recipeList[recipeIndex];
+    }
+  async updateIngredientInRecipe(ingredient){
+    ingredient.amount=parseInt(ingredient.amount);
+    if(ingredient.amount<1){
+      throw new Error("Amount can not be less than 1. Nothig has been edited.");
+      }
+    let recipeList = await this._loadAllRecipes();
+    const recipeIndex = recipeList.findIndex( (b) => b.id === ingredient.id_recipe );
+    if (recipeIndex < 0) {
+      throw new Error("Recipe with given id "+ingredient.id_recipe+" does not exists. Nothig has been edited.");
+      }  
+    let recipe=recipeList[recipeIndex];
+    let updated=0;
+    recipe.ingredients.forEach(function(ing,ind){
+      if(ing.id==ingredient.id_ingredient){
+        recipe.ingredients[ind].amount=ingredient.amount;
+        updated=1;
+        }
+      });  
+    if(updated==0){
+      throw new Error("Recipe with given id "+ingredient.id_recipe+" does not have ingredient id "+ingredient.id_ingredient+". Nothig has been edited.");
+      }
+    recipeList[recipeIndex] = {
+        ...recipeList[recipeIndex],
+        ...recipe,
+      };
+    await wf(this._getStorageLocation(),JSON.stringify(recipeList, null, 2));
+    return recipeList[recipeIndex];
+    }  
+  async deleteIngredientFromRecipe(ingredient){
+    let recipeList = await this._loadAllRecipes();
+    const recipeIndex = recipeList.findIndex( (b) => b.id === ingredient.id_recipe );
+    if (recipeIndex < 0) {
+      throw new Error("Recipe with given id "+ingredient.id_recipe+" does not exists. Nothig has been removed.");
+      }  
+    let recipe=recipeList[recipeIndex];
+    let updated=0;
+    let newIngs=[]
+    recipe.ingredients.forEach(function(ing,ind){
+      if(ing.id==ingredient.id_ingredient){
+        updated=1;
+      }else{
+        newIngs[ind]=ing;
+      }
+    });  
+    if(updated==0){
+      throw new Error("Recipe with given id "+ingredient.id_recipe+" does not have ingredient id "+ingredient.id_ingredient+". Nothig has been removed.");
+    }else{
+      recipe.ingredients=newIngs; 
+      recipeList[recipeIndex] = {
+          ...recipeList[recipeIndex],
+          ...recipe,
+        };
+      await wf(this._getStorageLocation(),JSON.stringify(recipeList, null, 2));
+    }
+    return recipeList[recipeIndex];
+    }
+  
   async _loadAllRecipes() {
     let recipeList;
     try {
