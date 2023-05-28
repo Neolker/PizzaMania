@@ -69,7 +69,7 @@ class IngredientDao {
       } else {
         throw new Error(
           "Unable to read from storage. Wrong data format. " +
-            this._getStorageLocation()
+          this._getStorageLocation()
         );
       }
     }
