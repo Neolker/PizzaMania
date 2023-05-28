@@ -3,13 +3,6 @@ const Ajv = require("ajv").default;
 const RecipeDao = require("../../dao/recipe-dao");
 let dao = new RecipeDao(path.join(__dirname, "..", "..", "storage", "recipes.json"));
 
-/*
-const IngredientDao = require("../../dao/ingredient-dao");
-let ingredientDao = new IngredientDao(
-  path.join(__dirname, "..", "..", "storage", "ingredients.json")
-);
-*/
-
 let schema = {
   type: "object",
   properties: {
@@ -29,10 +22,10 @@ async function CreateAbl(req, res) {
       recipeCreated = await dao.createRecipe(recipe);
       res.json(recipeCreated);
     } else {
-      res.status(500).send({"error":"Validation of input failed: name, description and procedure are required, minimal lenght: 2 characters in every variable."});
+      res.status(400).send({"error":"Validation of input failed: name, description and procedure are required, minimal lenght: 2 characters in every variable."});
     }
   } catch (e) {
-    res.status(500).send({"error":e.message});
+    res.status(400).send({"error":e.message});
   }
 }
 

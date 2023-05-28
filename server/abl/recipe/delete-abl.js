@@ -20,10 +20,10 @@ async function DeleteAbl(req, res) {
       await dao.deleteRecipe(recipeId);
       res.json({});
     } else {
-      res.status(500).send({"error":"Validation of input failed: id is required."});
+      res.status(400).send({"error":"Validation of input failed: id is required."});
     }
   } catch (e) {
-    res.status(500).send({"error":e.message});
+    res.status(400).send({"error":e.message});
   }
 }
 
