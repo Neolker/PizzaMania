@@ -15,7 +15,7 @@ import {
 import { useState, useEffect, useMemo, useContext } from "react";
 import { Modal, Table, Button, Alert } from "react-bootstrap";
 import { getColorByGrade } from "../helpers/common";
-import StudentGradeDelete from "./RecipeDelete";
+import RecipeDelete from "./RecipeDelete";
 import UserContext from "../UserProvider";
 
 function StudentSubjectGradeList({ student, subject, classroom, disabled }) {
@@ -194,11 +194,11 @@ function StudentSubjectGradeList({ student, subject, classroom, disabled }) {
                                 onClick={() => handleAddGradeShow(grade)}
                               />
 
-                              <StudentGradeDelete
+                              <RecipeDelete
                                 grade={grade}
                                 onDelete={(id) => handleGradeDeleted(id)}
                                 onError={(error) => setDeleteGradeError(error)}
-                              ></StudentGradeDelete>
+                              ></RecipeDelete>
                             </div>
                           }
                         </td>

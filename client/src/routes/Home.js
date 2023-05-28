@@ -11,6 +11,7 @@ import Stack from 'react-bootstrap/Stack';
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import RecipeDelete from "../bricks/RecipeDelete";
 
 function Home() {
 
@@ -102,6 +103,7 @@ function Home() {
                                     {
                                         ( isAdmin() ) ? <Button variant="danger">Smazat</Button> : ""
                                     }
+                                    <RecipeDelete recipe={recipe}></RecipeDelete>
                                 </Card.Body>
                             </Card>
                             </Col>);
