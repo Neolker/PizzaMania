@@ -14,9 +14,9 @@ let schema = {
   type: "object",
   properties: {
     id: { type: "string" },
-    name: { type: "string" },
+    name: { type: "string", minLength: 5 },
     description: { type: "string" },
-    imgUri: { type: "string" },
+    procedure: { type: "string", minLength: 10 },
     ingredients: {
       type: "array",
       minItems: 0,
@@ -41,7 +41,7 @@ async function UpdateAbl(req, res) {
     let recipe = req.body;
     const valid = ajv.validate(schema, recipe);
     if (valid) {
-      for(let ingredient of recipe.ingredients) {
+      for (let ingredient of recipe.ingredients) {
         const exists = await ingredientDao.getIngredient(ingredient.id);
 
         if (!exists) {
@@ -49,7 +49,7 @@ async function UpdateAbl(req, res) {
             errorMessage: "ingredient with id " + ingredient.id + " does not exist",
             params: req.body,
           });
-          return; 
+          return;
         }
       }
 

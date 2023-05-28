@@ -18,7 +18,7 @@ class RecipeDao {
 
   async createRecipe(recipe) {
     let recipeList = await this._loadAllRecipes();
-    recipe.id = crypto.randomBytes(8).toString("hex");
+    recipe.id = "REC-" + crypto.randomBytes(4).toString("hex");
     recipeList.push(recipe);
     await wf(
       this._getStorageLocation(),
@@ -84,7 +84,7 @@ class RecipeDao {
       } else {
         throw new Error(
           "Unable to read from storage. Wrong data format. " +
-            this._getStorageLocation()
+          this._getStorageLocation()
         );
       }
     }

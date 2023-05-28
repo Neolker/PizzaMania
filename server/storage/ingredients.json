@@ -1,32 +1,22 @@
 [
   {
-    "name": "sunka",
-    "id": "c6ea4fb4d330d32b",
+    "id": "ING-239e0305",
+    "name": "Sýr",
     "unit": "g"
   },
   {
-    "name": "paradajky",
-    "id": "01ed1245cdfd005a",
+    "id": "ING-7c09dfa1",
+    "name": "Rajčatový protlak",
+    "unit": "ml"
+  },
+  {
+    "id": "ING-6ff59e25",
+    "name": "Šunka",
     "unit": "g"
   },
   {
-    "name": "menší červená cibule",
-    "id": "95ff7d609062d4db",
-    "unit": "g"
-  },
-  {
-    "name": "kukurica",
-    "id": "73fd3db102b7803d",
-    "unit": "g"
-  },
-  {
-    "name": "olivy",
-    "id": "9416b19e1bd2cd11",
-    "unit": "g"
-  },
-  {
-    "name": "syr",
-    "id": "426371a4bbc275f1",
-    "unit": "g"
+    "id": "ING-7ecadb7b",
+    "name": "Salám",
+    "unit": "ks"
   }
 ]
