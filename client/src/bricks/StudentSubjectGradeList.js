@@ -15,7 +15,7 @@ import {
 import { useState, useEffect, useMemo, useContext } from "react";
 import { Modal, Table, Button, Alert } from "react-bootstrap";
 import { getColorByGrade } from "../helpers/common";
-import StudentGradeDelete from "./StudentGradeDelete";
+import StudentGradeDelete from "./RecipeDelete";
 import UserContext from "../UserProvider";
 
 function StudentSubjectGradeList({ student, subject, classroom, disabled }) {
