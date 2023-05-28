@@ -3,7 +3,7 @@ import Confirmation from './Confirmation';
 import { mdiTrashCanOutline } from '@mdi/js';
 import { useState } from 'react';
 
-export default function StudentGradeDelete({ grade, onDelete, onError }) {
+export default function StudentGradeDelete({ recipe, onDelete, onError }) {
     const [deleteGradeCall, setDeleteGradeCall] = useState({
         state: 'inactive'
     });
@@ -14,12 +14,12 @@ export default function StudentGradeDelete({ grade, onDelete, onError }) {
 
         setDeleteGradeCall({ state: 'pending' });
 
-        const res = await fetch(`http://localhost:3000/grade/delete`, {
+        const res = await fetch(`http://localhost:3000/recipe/delete`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ id: grade.id })
+            body: JSON.stringify({ id: recipe.id })
         });
 
         const data = await res.json();
@@ -34,16 +34,15 @@ export default function StudentGradeDelete({ grade, onDelete, onError }) {
             setDeleteGradeCall({ state: 'success', data });
 
             if (typeof onDelete === 'function') {
-                onDelete(grade.id);
+                onDelete(recipe.id);
             }
         }
     }
 
-
     return (
         <Confirmation
-            title="Smazat známku"
-            message="Opravdu si přejete smazat známku?"
+            title="Smazat recept"
+            message="Opravdu si přejete smazat recept?"
             confirmText="Smazat"
             onConfirm={handleDelete}
         >
