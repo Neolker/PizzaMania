@@ -1,10 +1,7 @@
 "use strict";
 const fs = require("fs");
 const path = require("path");
-
 const crypto = require("crypto");
-
-const RecipeDao = require("../dao/recipe-dao");
 
 const rf = fs.promises.readFile;
 const wf = fs.promises.writeFile;
@@ -64,8 +61,10 @@ class IngredientDao {
 
   async deleteIngredient(id) {
     let ingredientlist = await this._loadAllIngredients();
+    const RecipeDao = require("../dao/recipe-dao");
     const ingredientIndex = ingredientlist.findIndex((b) => b.id === id);
     if (ingredientIndex >= 0) {
+      
       let recipeD=await new RecipeDao(path.join("storage", "recipes.json"));
       let countOfUse=await recipeD.getCountOfRecipiesByIngredient(id);
       if(countOfUse>0){    
