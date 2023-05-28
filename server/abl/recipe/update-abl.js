@@ -1,38 +1,17 @@
 const path = require("path");
 const Ajv = require("ajv").default;
 const RecipeDao = require("../../dao/recipe-dao");
-let dao = new RecipeDao(
-  path.join(__dirname, "..", "..", "storage", "recipes.json")
-);
-
-const IngredientDao = require("../../dao/ingredient-dao");
-let ingredientDao = new IngredientDao(
-  path.join(__dirname, "..", "..", "storage", "ingredients.json")
-);
+let dao = new RecipeDao(path.join(__dirname, "..", "..", "storage", "recipes.json"));
 
 let schema = {
   type: "object",
   properties: {
     id: { type: "string" },
-    name: { type: "string", minLength: 5 },
+    name: { type: "string"},
     description: { type: "string" },
-    procedure: { type: "string", minLength: 10 },
-    ingredients: {
-      type: "array",
-      minItems: 0,
-      items: [
-        {
-          type: "object",
-          properties: {
-            id: { type: "string" },
-            amount: { type: "number" }
-          },
-          required: ["id"],
-        }
-      ]
-    }
+    procedure: { type: "string" },
   },
-  required: ["id"],
+  required: ["id","name","description","procedure"],
 };
 
 async function UpdateAbl(req, res) {
@@ -41,32 +20,13 @@ async function UpdateAbl(req, res) {
     let recipe = req.body;
     const valid = ajv.validate(schema, recipe);
     if (valid) {
-      for (let ingredient of recipe.ingredients) {
-        const exists = await ingredientDao.getIngredient(ingredient.id);
-
-        if (!exists) {
-          res.status(400).send({
-            errorMessage: "ingredient with id " + ingredient.id + " does not exist",
-            params: req.body,
-          });
-          return;
-        }
-      }
-
-      recipe = await dao.updateRecipe(recipe);
-      res.json(recipe);
+      recipeUpdated = await dao.updateRecipe(recipe);
+      res.json(recipeUpdated);
     } else {
-      res.status(400).send({
-        errorMessage: "validation of input failed",
-        params: recipe,
-        reason: ajv.errors,
-      });
+      res.status(500).send({"error":"Validation of input failed: id, name, description and procedure are required, minimal lenght: 2 characters in all of variables."});
     }
   } catch (e) {
-    if (e.message.startsWith("recipe with given id")) {
-      res.status(400).json({ error: e.message });
-    }
-    res.status(500).send(e);
+    res.status(500).send({"error":e.message});
   }
 }
 

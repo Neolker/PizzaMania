@@ -1,38 +1,23 @@
 const path = require("path");
 const Ajv = require("ajv").default;
 const RecipeDao = require("../../dao/recipe-dao");
-let dao = new RecipeDao(
-  path.join(__dirname, "..", "..", "storage", "recipes.json")
-);
+let dao = new RecipeDao(path.join(__dirname, "..", "..", "storage", "recipes.json"));
 
+/*
 const IngredientDao = require("../../dao/ingredient-dao");
 let ingredientDao = new IngredientDao(
   path.join(__dirname, "..", "..", "storage", "ingredients.json")
 );
+*/
 
 let schema = {
   type: "object",
   properties: {
-    id: { type: "string" },
-    name: { type: "string", minLength: 5 },
+    name: { type: "string" },
     description: { type: "string" },
-    procedure: { type: "string", minLength: 10 },
-    ingredients: {
-      type: "array",
-      minItems: 0,
-      items: [
-        {
-          type: "object",
-          properties: {
-            id: { type: "string" },
-            amount: { type: "number" },
-          },
-          required: ["id", "amount"],
-        }
-      ]
-    }
+    procedure: { type: "string" },
   },
-  required: ["name", "description", "ingredients"],
+  required: ["name", "description", "procedure"],
 };
 
 async function CreateAbl(req, res) {
@@ -41,31 +26,13 @@ async function CreateAbl(req, res) {
     const valid = ajv.validate(schema, req.body);
     if (valid) {
       let recipe = req.body;
-
-      for (let ingredient of recipe.ingredients) {
-        const exists = await ingredientDao.getIngredient(ingredient.id);
-
-        if (!exists) {
-          res.status(400).send({
-            errorMessage: "ingredient with id " + ingredient.id + " does not exist",
-            params: req.body,
-          });
-          return;
-        }
-      }
-
-      recipe = await dao.createRecipe(recipe);
-      res.json(recipe);
+      recipeCreated = await dao.createRecipe(recipe);
+      res.json(recipeCreated);
     } else {
-      res.status(400).send({
-        errorMessage: "validation of input failed",
-        params: req.body,
-        reason: ajv.errors,
-      });
+      res.status(500).send({"error":"Validation of input failed: name, description and procedure are required, minimal lenght: 2 characters in every variable."});
     }
   } catch (e) {
-    console.log(e);
-    res.status(500).send(e);
+    res.status(500).send({"error":e.message});
   }
 }
 
