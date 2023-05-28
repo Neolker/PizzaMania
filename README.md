@@ -47,9 +47,12 @@
 
 | API               | http | vstup                                                           | vystup | příklad |
 | ----------------- | ---- | --------------------------------------------------------------- | ------ | ------- |
-| recipe/create     | POST | `name`, `description`, `(procedure)`, `ingredients: id, amount` | TBD    | ---     |
+| recipe/create     | POST | `name`, `description`, `procedure`                              | TBD    | ---     |
 | recipe/get        | GET  | `id`                                                            | TBD    | ---     |
-| recipe/update     | POST | `id`, `(amount)`, `(unit)`                                      | TBD    | ---     |
+| recipe/update     | POST | `id`, `description`, `procedure`                                | TBD    | ---     |
+| recipe/add-ingredient | POST | `id_recipe`, `id_ingredient`, `amount`                      | TBD    | ---     |
+| recipe/delete-ingredient | POST | `id_recipe`, `id_ingredient`                             | TBD    | ---     |
+| recipe/update-ingredient | POST | `id_recipe`, `id_ingredient`, `amount`                   | TBD    | ---     |
 | recipe/delete     | POST | `id`                                                            | TBD    | ---     |
 | recipe/list       | GET  | -                                                               | TBD    | ---     |
 |                   |      |                                                                 |        |         |
