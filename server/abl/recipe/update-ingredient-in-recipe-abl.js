@@ -1,0 +1,32 @@
+const path = require("path");
+const Ajv = require("ajv").default;
+const RecipeDao = require("../../dao/recipe-dao");
+let dao = new RecipeDao(path.join(__dirname, "..", "..", "storage", "recipes.json"));
+
+let schema = {
+  type: "object",
+  properties: {
+    id_recipe: { type: "string" },
+    id_ingredient: { type: "string" },
+    amount: { type: "number" },
+  },
+  required: ["id_recipe", "id_ingredient", "amount"],
+};
+
+async function UpdateIngredientInRecipeAbl(req, res) {
+  try {
+    const ajv = new Ajv();
+    let ingredient = req.body;
+    const valid = ajv.validate(schema, ingredient);
+    if (valid) {
+      recipe = await dao.updateIngredientInRecipe(ingredient);
+      res.json(recipe);
+    } else {
+     res.status(500).send({"error":"Validation of input failed: id_recipe, id_ingredient and amount are required. Minimal amount si 1."});
+    }
+  } catch (e) {
+    res.status(500).send({"error":e.message});
+  }
+}
+
+module.exports = UpdateIngredientInRecipeAbl;
