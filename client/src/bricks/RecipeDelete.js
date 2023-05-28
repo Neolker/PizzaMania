@@ -2,6 +2,7 @@ import Icon from '@mdi/react';
 import Confirmation from './Confirmation';
 import { mdiTrashCanOutline } from '@mdi/js';
 import { useState } from 'react';
+import Button from "react-bootstrap/Button";
 
 export default function RecipeDelete({ recipe, onDelete, onError }) {
     const [deleteRecipeCall, setDeleteRecipeCall] = useState({
@@ -47,11 +48,7 @@ export default function RecipeDelete({ recipe, onDelete, onError }) {
             onConfirm={handleDelete}
         >
             <div>
-                <Icon
-                    path={mdiTrashCanOutline}
-                    style={{ cursor: 'pointer', color: 'red' }}
-                    size={0.8}
-                ></Icon>
+                <Button variant="danger">Smazat</Button>
             </div>
         </Confirmation>
     )
