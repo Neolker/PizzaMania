@@ -258,7 +258,7 @@ function StudentSubjectGradeList({ student, subject, classroom, disabled }) {
       </Modal>
 
       <StudentGradeForm
-        student={student}
+        id={student}
         subject={subject}
         show={addGradeShow.state}
         grade={addGradeShow.data}

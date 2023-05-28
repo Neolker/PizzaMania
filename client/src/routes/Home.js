@@ -12,12 +12,17 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import RecipeDelete from "../bricks/RecipeDelete";
+import StudentGradeForm from "../bricks/StudentGradeForm";
 
 function Home() {
 
     const [listRecipeCall, setListRecipeCall] = useState({
         state: "pending",
     });
+    const [addRecipeShow, setAddRecipeShow] = useState({
+        state: false
+    });
+
     const { isEditor, isAdmin } = useContext(UserContext);
 
     let navigate = useNavigate();
@@ -49,6 +54,25 @@ function Home() {
             });
         }
     }
+
+
+    const handleAddGradeShow = (data) => setAddRecipeShow({ state: true, data });
+
+    const handleGradeAdded = (grade) => {
+        // if (studentSubjectGradeListCall.state === "success") {
+        //     let gradeList = [...studentSubjectGradeListCall.data];
+        //
+        //     if (grade.id) {
+        //         gradeList = gradeList.filter((g) => g.id !== grade.id);
+        //     }
+        //
+        //     setStudentSubjectGradeListCall({
+        //         state: "success",
+        //         data: [...gradeList, grade]
+        //     });
+        // }
+    }
+
 
     function getRecipeList() {
         switch (listRecipeCall.state) {
@@ -118,7 +142,7 @@ function Home() {
                                         onClick={() => navigate("/recipeDetail?id=" + recipe.id)}
                                     >Otevřít</Button>
                                     {
-                                        ( isEditor() || isAdmin() ) ? <Button variant="secondary">Upravit</Button> : ""
+                                        ( isEditor() || isAdmin() ) ? <Button variant="secondary" onClick={() => handleAddGradeShow(recipe)}  >Upravit</Button> : ""
                                     }
                                     {
                                         ( isAdmin() ) ? <RecipeDelete recipe={recipe} onDelete={handleRecipeDelete}></RecipeDelete> : ""
@@ -140,6 +164,13 @@ function Home() {
 
     return (<Container>
         {getRecipeList()}
+
+        <StudentGradeForm
+            show={addRecipeShow.state}
+            recipe={addRecipeShow.data}
+            setAddGradeShow={setAddRecipeShow}
+            onComplete={(recipe) => handleGradeAdded(recipe)}
+        />
     </Container>);
 }
 
