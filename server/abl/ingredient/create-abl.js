@@ -8,7 +8,6 @@ let dao = new IngredientDao(
 let schema = {
   type: "object",
   properties: {
-    id: { type: "string" },
     name: { type: "string" },
     unit: { type: "string" },
   },
@@ -21,21 +20,13 @@ async function CreateAbl(req, res) {
     const valid = ajv.validate(schema, req.body);
     if (valid) {
       let ingredient = req.body;
-      ingredient = await dao.createIngredient(ingredient);
-      res.json(ingredient);
+      let ingredientCreated = await dao.createIngredient(ingredient);
+      res.json(ingredientCreated);
     } else {
-      res.status(400).send({
-        errorMessage: "validation of input failed",
-        params: req.body,
-        reason: ajv.errors,
-      });
+      res.status(500).send({"error":"Validation of input failed: name and unit are required, minimal lenght: 2 characters in name and 2 characters in unit."});
     }
   } catch (e) {
-    if (e.includes("ingredient with id ")) {
-      res.status(400).send({ errorMessage: e, params: req.body });
-    } else {
-      res.status(500).send(e);
-    }
+    res.status(500).send({"error":e.message});
   }
 }
 
