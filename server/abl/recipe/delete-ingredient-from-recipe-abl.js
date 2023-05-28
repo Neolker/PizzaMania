@@ -21,10 +21,10 @@ async function DeleteIngredientFromRecipeAbl(req, res) {
       recipe = await dao.deleteIngredientFromRecipe(ingredient);
       res.json(recipe);
     } else {
-     res.status(400).send({"error":"Validation of input failed: id_recipe and id_ingredient are required."});
+      res.status(400).send({ "error": "Validation of the input failed: id_recipe and id_ingredient are required." });
     }
   } catch (e) {
-    res.status(400).send({"error":e.message});
+    res.status(400).send({ "error": e.message });
   }
 }
 

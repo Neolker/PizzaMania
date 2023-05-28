@@ -15,16 +15,16 @@ class IngredientDao {
 
   async createIngredient(ingredient) {
     let ingredientlist = await this._loadAllIngredients();
-    let ingredientPrototype={
-      "id":"ING-" + crypto.randomBytes(4).toString("hex"),
-      "name":"New ingredient",
-      "unit":"A piece"
-      };
-    if(ingredient.name.length<2||ingredient.unit.length<2){
-      throw new Error("Name and unit are required, ingredient (name: "+ingredient.name+", unit: "+ingredient.unit+") has not been created. Minimal lenght: 2 characters in name and 2 characters in unit.");
-      }  
-    ingredientPrototype.name=ingredient.name;
-    ingredientPrototype.unit=ingredient.unit;
+    let ingredientPrototype = {
+      "id": "ING-" + crypto.randomBytes(4).toString("hex"),
+      "name": "New ingredient",
+      "unit": "A piece"
+    };
+    if (ingredient.name.length < 2 || ingredient.unit.length < 2) {
+      throw new Error("Name and unit are required, ingredient (name: " + ingredient.name + ", unit: " + ingredient.unit + ") has not been created. Minimal lenght: 2 characters in the name and 2 characters in the unit.");
+    }
+    ingredientPrototype.name = ingredient.name;
+    ingredientPrototype.unit = ingredient.unit;
     ingredientlist.push(ingredientPrototype);
     await wf(this._getStorageLocation(), JSON.stringify(ingredientlist, null, 2));
     return ingredientPrototype;
@@ -40,16 +40,16 @@ class IngredientDao {
     let ingredientlist = await this._loadAllIngredients();
     const ingredientIndex = ingredientlist.findIndex((b) => b.id === ingredient.id);
     if (ingredientIndex < 0) {
-      throw new Error("Ingredient with given id "+ingredient.id+" does not exists.");
+      throw new Error("Ingredient with given id " + ingredient.id + " does not exists.");
     } else {
-      if(ingredient.name.length<2||ingredient.unit.length<2){
-        throw new Error("Name and unit are required, ingredient (name: "+ingredient.name+", unit: "+ingredient.unit+") has not been created. Minimal lenght: 2 characters in name and 2 characters in unit.");
-        }  
-      let ingredientPrototype={
-        "id":ingredient.id,
-        "name":ingredient.name,
-        "unit":ingredient.unit
-        };
+      if (ingredient.name.length < 2 || ingredient.unit.length < 2) {
+        throw new Error("Name and unit are required, ingredient (name: " + ingredient.name + ", unit: " + ingredient.unit + ") has not been created. Minimal lenght: 2 characters in the name and 2 characters in the unit.");
+      }
+      let ingredientPrototype = {
+        "id": ingredient.id,
+        "name": ingredient.name,
+        "unit": ingredient.unit
+      };
       ingredientlist[ingredientIndex] = {
         ...ingredientlist[ingredientIndex],
         ...ingredientPrototype,
@@ -64,17 +64,17 @@ class IngredientDao {
     const RecipeDao = require("../dao/recipe-dao");
     const ingredientIndex = ingredientlist.findIndex((b) => b.id === id);
     if (ingredientIndex >= 0) {
-      
-      let recipeD=await new RecipeDao(path.join("storage", "recipes.json"));
-      let countOfUse=await recipeD.getCountOfRecipiesByIngredient(id);
-      if(countOfUse>0){    
-        throw new Error("Ingredient id "+id+" is used in "+countOfUse+" recipient(s). Delete is not possible.");
-      }else{
+
+      let recipeD = await new RecipeDao(path.join("storage", "recipes.json"));
+      let countOfUse = await recipeD.getCountOfRecipiesByIngredient(id);
+      if (countOfUse > 0) {
+        throw new Error("Ingredient id " + id + " is used in " + countOfUse + " recipient(s). Delete is not possible.");
+      } else {
         ingredientlist.splice(ingredientIndex, 1);
         await wf(this._getStorageLocation(), JSON.stringify(ingredientlist, null, 2));
-      }  
-    }else{
-      throw new Error("Ingredient id "+id+" is not found.");
+      }
+    } else {
+      throw new Error("Ingredient id " + id + " is not found.");
     }
     return {};
   }
@@ -90,12 +90,12 @@ class IngredientDao {
       ingredientlist = JSON.parse(await rf(this._getStorageLocation()));
     } catch (e) {
       if (typeof e.code === 'undefined') {
-        throw new Error("Unable to read from storage - wrong data format in "+this._getStorageLocation());
+        throw new Error("Unable to read from storage - wrong data format in " + this._getStorageLocation());
       } else if (e.code === "ENOENT") {
-        console.info("No storage found, initializing new one in "+this._getStorageLocation());
-        ingredientlist=[];
+        console.info("No storage found, initializing new one in " + this._getStorageLocation());
+        ingredientlist = [];
       } else {
-        throw new Error("Unable to read from storage - wrong data format in "+this._getStorageLocation());
+        throw new Error("Unable to read from storage - wrong data format in " + this._getStorageLocation());
       }
     }
     return ingredientlist;

@@ -7,11 +7,11 @@ let schema = {
   type: "object",
   properties: {
     id: { type: "string" },
-    name: { type: "string"},
+    name: { type: "string" },
     description: { type: "string" },
     procedure: { type: "string" },
   },
-  required: ["id","name","description","procedure"],
+  required: ["id", "name", "description", "procedure"],
 };
 
 async function UpdateAbl(req, res) {
@@ -23,10 +23,10 @@ async function UpdateAbl(req, res) {
       recipeUpdated = await dao.updateRecipe(recipe);
       res.json(recipeUpdated);
     } else {
-      res.status(400).send({"error":"Validation of input failed: id, name, description and procedure are required, minimal lenght: 2 characters in all of variables."});
+      res.status(400).send({ "error": "Validation of the input failed: id, name, description and procedure are required, minimal lenght: 2 characters in all variables." });
     }
   } catch (e) {
-    res.status(400).send({"error":e.message});
+    res.status(400).send({ "error": e.message });
   }
 }
 

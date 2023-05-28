@@ -22,10 +22,10 @@ async function AddIngredientIntoRecipeAbl(req, res) {
       recipe = await dao.addIngredientIntoRecipe(ingredient);
       res.json(recipe);
     } else {
-     res.status(400).send({"error":"Validation of input failed: id_recipe, id_ingredient and amount are required. Minimal amount si 1."});
+      res.status(400).send({ "error": "Validation of the input failed: id_recipe, id_ingredient and amount are required. Minimal amount is 1." });
     }
   } catch (e) {
-    res.status(400).send({"error":e.message});
+    res.status(400).send({ "error": e.message });
   }
 }
 

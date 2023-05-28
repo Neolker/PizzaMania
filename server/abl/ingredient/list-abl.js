@@ -8,7 +8,7 @@ async function ListAbl(req, res) {
     const ingredients = await dao.listIngredients();
     res.json(ingredients);
   } catch (e) {
-    res.status(400).send({"error":e.message});
+    res.status(400).send({ "error": e.message });
   }
 }
 
