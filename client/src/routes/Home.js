@@ -17,7 +17,7 @@ function Home() {
     const [listRecipeCall, setListRecipeCall] = useState({
         state: "pending",
     });
-    const { user, users, changeUser, getClassroomsToShow, isLoggedIn } = useContext(UserContext);
+    const { user, users, changeUser, isEditor, isAdmin, isLoggedIn } = useContext(UserContext);
 
     let navigate = useNavigate();
 
@@ -96,19 +96,11 @@ function Home() {
                                     <Button variant="primary"
                                         onClick={() => navigate("/recipeDetail?id=" + recipe.id)}
                                     >Otevřít</Button>
-                                    {/*{users.map(user => {*/}
-                                    {/*    return (*/}
-                                    {/*        <NavDropdown.Item onClick={() => changeUser(user.id)}>*/}
-                                    {/*            {user.fullName} ({user.role.name})*/}
-                                    {/*        </NavDropdown.Item>*/}
-                                    {/*    )*/}
-                                    {/*})}*/}
-                                    {/*{*/}
                                     {
-                                        (getClassroomsToShow(listRecipeCall.data).includes(recipe.id)) ? <Button variant="secondary">Editovat</Button> : ""
+                                        ( isEditor() || isAdmin() ) ? <Button variant="secondary">Upravit</Button> : ""
                                     }
                                     {
-                                        (getClassroomsToShow(listRecipeCall.data).includes(recipe.id)) ? <Button variant="danger">Smazat</Button> : ""
+                                        ( isAdmin() ) ? <Button variant="danger">Smazat</Button> : ""
                                     }
                                 </Card.Body>
                             </Card>
