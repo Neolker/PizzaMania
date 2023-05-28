@@ -4,6 +4,8 @@ const path = require("path");
 
 const crypto = require("crypto");
 
+const RecipeDao = require("../dao/recipe-dao");
+
 const rf = fs.promises.readFile;
 const wf = fs.promises.writeFile;
 
@@ -47,9 +49,17 @@ class IngredientDao {
     let ingredientlist = await this._loadAllIngredients();
     const ingredientIndex = ingredientlist.findIndex((b) => b.id === id);
     if (ingredientIndex >= 0) {
-      ingredientlist.splice(ingredientIndex, 1);
+      let recipeD=await new RecipeDao(path.join("storage", "recipes.json"));
+      let countOfUse=await recipeD.getCountOfRecipiesByIngredient(id);
+      if(countOfUse>0){    
+        throw new Error("Ingredient id "+id+" is used in "+countOfUse+" recipients. Delete is not possible.");
+      }else{
+        ingredientlist.splice(ingredientIndex, 1);
+        await wf(this._getStorageLocation(), JSON.stringify(ingredientlist, null, 2));
+      }  
+    }else{
+      throw new Error("Ingredient id "+id+" is not found.");
     }
-    await wf(this._getStorageLocation(), JSON.stringify(ingredientlist, null, 2));
     return {};
   }
 
@@ -69,7 +79,7 @@ class IngredientDao {
       } else {
         throw new Error(
           "Unable to read from storage. Wrong data format. " +
-          this._getStorageLocation()
+            this._getStorageLocation()
         );
       }
     }
