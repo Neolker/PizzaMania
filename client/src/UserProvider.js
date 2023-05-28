@@ -59,11 +59,11 @@ export function UserProvider({ children }) {
     }
 
     const isEditor = () => {
-        return user.role.id === 3;
+        return user.role.id === 1;
     }
 
     const isAdmin = () => {
-        return user.role.id === 4;
+        return user.role.id === 2;
     }
 
     // const canShowDetail = (classroomId, subjectId) => {
@@ -93,8 +93,6 @@ export function UserProvider({ children }) {
         isLoggedIn,
         isEditor,
         isAdmin,
-        canEdit,
-        canDelete,
     }
 
     return (
