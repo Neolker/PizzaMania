@@ -3,11 +3,13 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import Offcanvas from "react-bootstrap/Offcanvas";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {useContext} from "react";
 import UserContext from "./UserProvider";
+import logo from "./logo_pizzamania.png"
 
 function App() {
 
@@ -26,16 +28,26 @@ function App() {
             >
                 <Container fluid>
                     <Navbar.Brand onClick={() => navigate("/")}>
-                        Simple School
+                        <img
+                            alt="PizzaMania"
+                            src={logo}
+                            width="64"
+                            height="32"
+                            className="d-inline-block align-top"
+                        />{' '}
+                        PizzaMania
                     </Navbar.Brand>
-                    <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-sm`}/>
-                    <Navbar.Offcanvas id={`offcanvasNavbar-expand-sm`}>
-                        <Offcanvas.Header closeButton>
-                            <Offcanvas.Title id={`offcanvasNavbarLabel-expand-sm`}>
-                                Simple School
-                            </Offcanvas.Title>
-                        </Offcanvas.Header>
-                        <Offcanvas.Body>
+                    <Button variant="success">Přidat recept</Button>
+                    <Button variant="success">Přidat ingredienci</Button>
+                    <Form className="d-flex">
+                        <Form.Control
+                            type="search"
+                            placeholder="Search"
+                            className="me-2"
+                            aria-label="Search"
+                        />
+                        <Button variant="outline-success">Search</Button>
+                    </Form>
                             <Nav className="justify-content-end flex-grow-1 pe-3">
                                 <NavDropdown align="end" title={user.fullName ?? 'Nepřihlášen'}>
                                     {users.map(user => {
@@ -50,8 +62,6 @@ function App() {
                                     </NavDropdown.Item>
                                 </NavDropdown>
                             </Nav>
-                        </Offcanvas.Body>
-                    </Navbar.Offcanvas>
                 </Container>
             </Navbar>
             <Outlet/>
