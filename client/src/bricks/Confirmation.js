@@ -1,5 +1,6 @@
-import { Popover, OverlayTrigger, Button } from 'react-bootstrap';
-
+import Button from 'react-bootstrap/Button';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Popover from 'react-bootstrap/Popover';
 export default function Confirmation({ title, message, confirmText, onConfirm, children }) {
     const handleConfirm = () => {
         if (typeof onConfirm === "function") {
@@ -10,7 +11,7 @@ export default function Confirmation({ title, message, confirmText, onConfirm, c
     const handleClose = () => document.body.click();
     
     const popover = (
-        <Popover id="popover-basic">
+        <Popover id='popover-positioned-bottom'>
             <Popover.Header as="h3">{title}</Popover.Header>
             <Popover.Body>
                 {message}
@@ -31,13 +32,16 @@ export default function Confirmation({ title, message, confirmText, onConfirm, c
                 </div>
             </Popover.Body>
         </Popover>
+
+
     );
 
     return (
         <>
             <OverlayTrigger
                 trigger="click"
-                placement="right"
+                key="bottom"
+                placement="bottom"
                 overlay={popover}
                 rootClose
             >
