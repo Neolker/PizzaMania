@@ -9,10 +9,10 @@ let schema = {
   type: "object",
   properties: {
     id: { type: "string" },
-    amount: { type: "number" },
+    name: { type: "string" },
     unit: { type: "string" },
   },
-  required: ["id"],
+  required: ["id", "name", "unit"],
 };
 
 async function UpdateAbl(req, res) {
@@ -24,17 +24,10 @@ async function UpdateAbl(req, res) {
       ingredient = await dao.updateIngredient(ingredient);
       res.json(ingredient);
     } else {
-      res.status(400).send({
-        errorMessage: "validation of input failed",
-        params: ingredient,
-        reason: ajv.errors,
-      });
+     res.status(500).send({"error":"Validation of input failed: id, name and unit are required, minimal lenght: 2 characters in name and 2 characters in unit."});
     }
   } catch (e) {
-    if (e.message.startsWith("Ingredient with given id")) {
-      res.status(400).json({ error: e.message });
-    }
-    res.status(500).send(e);
+    res.status(500).send({"error":e.message});
   }
 }
 

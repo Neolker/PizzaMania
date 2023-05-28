@@ -55,7 +55,7 @@
 |                   |      |                                                                 |        |         |
 | ingredient/create | POST | `name`, `unit`                                                  | TBD    | ---     |
 | ingredient/get    | GET  | `id`                                                            | TBD    | ---     |
-| ingredient/update | POST | `id`, `(amount)`, `(unit)`                                      | TBD    | ---     |
+| ingredient/update | POST | `id`, `name`, `unit`                                            | TBD    | ---     |
 | ingredient/delete | POST | `id`                                                            | TBD    | ---     |
 | ingredient/list   | GET  | -                                                               | TBD    | ---     |
 
