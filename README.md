@@ -50,11 +50,12 @@
 | recipe/create     | POST | `name`, `description`, `procedure`                              | TBD    | ---     |
 | recipe/get        | GET  | `id`                                                            | TBD    | ---     |
 | recipe/update     | POST | `id`, `description`, `procedure`                                | TBD    | ---     |
+| recipe/delete     | POST | `id`                                                            | TBD    | ---     |
+| recipe/list       | GET  | -                                                               | TBD    | ---     |
+|                   |      |                                                                 |        |         |
 | recipe/add-ingredient | POST | `id_recipe`, `id_ingredient`, `amount`                      | TBD    | ---     |
 | recipe/delete-ingredient | POST | `id_recipe`, `id_ingredient`                             | TBD    | ---     |
 | recipe/update-ingredient | POST | `id_recipe`, `id_ingredient`, `amount`                   | TBD    | ---     |
-| recipe/delete     | POST | `id`                                                            | TBD    | ---     |
-| recipe/list       | GET  | -                                                               | TBD    | ---     |
 |                   |      |                                                                 |        |         |
 | ingredient/create | POST | `name`, `unit`                                                  | TBD    | ---     |
 | ingredient/get    | GET  | `id`                                                            | TBD    | ---     |
