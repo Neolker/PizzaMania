@@ -18,7 +18,7 @@ function Home() {
     const [listRecipeCall, setListRecipeCall] = useState({
         state: "pending",
     });
-    const { user, users, changeUser, isEditor, isAdmin, isLoggedIn } = useContext(UserContext);
+    const { isEditor, isAdmin } = useContext(UserContext);
 
     let navigate = useNavigate();
 
@@ -35,12 +35,43 @@ function Home() {
         });
     }, []);
 
+    const handleRecipeDelete = (recipeId) => {
+        if (listRecipeCall.state === "success") {
+            fetch(`http://localhost:3000/recipe/list`, {
+                method: "GET",
+            }).then(async (response) => {
+                const responseJson = await response.json();
+                if (response.status >= 400) {
+                    setListRecipeCall({ state: "error", error: responseJson });
+                } else {
+                    setListRecipeCall({ state: "success", data: responseJson });
+                }
+            });
+        }
+    }
+
     function getRecipeList() {
         switch (listRecipeCall.state) {
             case "pending":
                 return (<Stack direction="horizontal" gap={3}>
                     <Card style={{ width: '18rem' }}>
-                        //TODO IMAGE
+                        <Placeholder as={Card.Image} animation="glow">
+                            <Placeholder className="w-100"  style={{height: '135px'}}  />
+                        </Placeholder>                        <Card.Body>
+                            <Placeholder as={Card.Title} animation="glow">
+                                <Placeholder xs={6} />
+                            </Placeholder>
+                            <Placeholder as={Card.Text} animation="glow">
+                                <Placeholder xs={7} /> <Placeholder xs={4} /> <Placeholder xs={4} />{' '}
+                                <Placeholder xs={6} /> <Placeholder xs={8} />
+                            </Placeholder>
+                            <Placeholder.Button variant="primary" xs={6} />
+                        </Card.Body>
+                    </Card>
+                    <Card style={{ width: '18rem' }}>
+                        <Placeholder as={Card.Image} animation="glow">
+                            <Placeholder className="w-100"  style={{height: '135px'}}  />
+                        </Placeholder>
                         <Card.Body>
                             <Placeholder as={Card.Title} animation="glow">
                                 <Placeholder xs={6} />
@@ -53,20 +84,9 @@ function Home() {
                         </Card.Body>
                     </Card>
                     <Card style={{ width: '18rem' }}>
-                        //TODO IMAGE
-                        <Card.Body>
-                            <Placeholder as={Card.Title} animation="glow">
-                                <Placeholder xs={6} />
-                            </Placeholder>
-                            <Placeholder as={Card.Text} animation="glow">
-                                <Placeholder xs={7} /> <Placeholder xs={4} /> <Placeholder xs={4} />{' '}
-                                <Placeholder xs={6} /> <Placeholder xs={8} />
-                            </Placeholder>
-                            <Placeholder.Button variant="primary" xs={6} />
-                        </Card.Body>
-                    </Card>
-                    <Card style={{ width: '18rem' }}>
-                        //TODO IMAGE
+                        <Placeholder as={Card.Image} animation="glow">
+                            <Placeholder className="w-100"  style={{height: '135px'}}  />
+                        </Placeholder>
                         <Card.Body>
                             <Placeholder as={Card.Title} animation="glow">
                                 <Placeholder xs={6} />
@@ -101,9 +121,9 @@ function Home() {
                                         ( isEditor() || isAdmin() ) ? <Button variant="secondary">Upravit</Button> : ""
                                     }
                                     {
-                                        ( isAdmin() ) ? <Button variant="danger">Smazat</Button> : ""
+                                        ( isAdmin() ) ? <RecipeDelete recipe={recipe} onDelete={handleRecipeDelete}></RecipeDelete> : ""
                                     }
-                                    <RecipeDelete recipe={recipe}></RecipeDelete>
+
                                 </Card.Body>
                             </Card>
                             </Col>);
