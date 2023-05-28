@@ -72,7 +72,21 @@ class RecipeDao {
     let recipeList = await this._loadAllRecipes();
     return recipeList;
   }
-
+  
+  async getCountOfRecipiesByIngredient(ingredientId){
+    let recipeList = await this._loadAllRecipes();
+    let cnt=0;
+    recipeList.forEach(function(recipe){
+      recipe.ingredients.forEach(function(ingredient){
+        if(ingredient.id==ingredientId){
+          cnt++;
+          }
+        })
+      });
+    /* console.log("cnt: "+cnt); // for debug */
+    return cnt;
+    }
+    
   async _loadAllRecipes() {
     let recipeList;
     try {
