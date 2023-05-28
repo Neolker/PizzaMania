@@ -1,5 +1,5 @@
 function StudentList() {
-  return <div>TODO StudentList</div>;
+    return <div>TODO StudentList</div>;
 }
 
 export default StudentList;

@@ -3,8 +3,9 @@ import {mdiLoading} from '@mdi/js';
 import {useEffect, useState} from "react";
 import {Button, Col, Form, Modal, Row} from "react-bootstrap";
 
-export default function StudentGradeForm({recipe, show, setAddGradeShow, onComplete}) {
+export default function RecipeForm({recipe, show, setAddGradeShow, onComplete}) {
     const defaultForm = {
+        id: "",
         name: "",
         description: "",
         procedure: "",
@@ -23,6 +24,7 @@ export default function StudentGradeForm({recipe, show, setAddGradeShow, onCompl
     useEffect(() => {
         if (recipe) {
             setFormData({
+                id: recipe.id,
                 name: recipe.name,
                 description: recipe.description,
                 procedure: recipe.procedure,
@@ -51,45 +53,42 @@ export default function StudentGradeForm({recipe, show, setAddGradeShow, onCompl
     };
 
     const handleSubmit = async (e) => {
-        // const form = e.currentTarget;
-        //
-        // e.preventDefault();
-        // e.stopPropagation();
-        //
-        // const payload = {
-        //   ...formData,
-        //   studentId: id.id,
-        //   subjectId: name.id,
-        //   id: grade ? grade.id : null
-        // };
-        //
-        // if (!form.checkValidity()) {
-        //   setValidated(true);
-        //   return;
-        // }
-        //
-        // setStudentAddGradeCall({ state: 'pending' });
-        // const res = await fetch(`http://localhost:3000/grade/${grade ? 'update' : 'create'}`, {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify(payload)
-        // });
-        //
-        // const data = await res.json();
-        //
-        // if (res.status >= 400) {
-        //   setStudentAddGradeCall({ state: "error", error: data });
-        // } else {
-        //   setStudentAddGradeCall({ state: "success", data });
-        //
-        //   if (typeof onComplete === 'function') {
-        //     onComplete(data);
-        //   }
-        //
-        //   handleClose();
-        // }
+        const form = e.currentTarget;
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        const payload = {
+            ...formData
+        };
+
+        if (!form.checkValidity()) {
+            setValidated(true);
+            return;
+        }
+
+        setStudentAddGradeCall({state: 'pending'});
+        const res = await fetch(`http://localhost:3000/recipe/${recipe ? 'update' : 'create'}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+
+        if (res.status >= 400) {
+            setStudentAddGradeCall({state: "error", error: data});
+        } else {
+            setStudentAddGradeCall({state: "success", data});
+
+            if (typeof onComplete === 'function') {
+                onComplete(data);
+            }
+
+            handleClose();
+        }
     };
 
     return (
@@ -100,6 +99,13 @@ export default function StudentGradeForm({recipe, show, setAddGradeShow, onCompl
                         <Modal.Title>{recipe ? 'Upravit' : 'Přidat'} recept</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
+                        <Form.Control
+                            type="text"
+                            value={formData.id}
+                            aria-label="Disabled input example"
+                            disabled
+                            hidden
+                        />
                         <Form.Group className="mb-3">
                             <Form.Label>Název</Form.Label>
                             <Form.Control
@@ -147,7 +153,7 @@ export default function StudentGradeForm({recipe, show, setAddGradeShow, onCompl
                                 <Form.Label>Název</Form.Label>
                                 <Form.Select
                                     value={formData.ingredients.name}
-                                    onChange={(e) => setField("ingredient.name", Number(e.target.value))}
+                                    onChange={(e) => setField("name", Number(e.target.value))}
                                     required
                                 >
                                     <option value="" disabled>

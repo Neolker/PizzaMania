@@ -48,20 +48,20 @@ function App() {
                         />
                         <Button variant="outline-success">Search</Button>
                     </Form>
-                            <Nav className="justify-content-end flex-grow-1 pe-3">
-                                <NavDropdown align="end" title={user.fullName ?? 'Nepřihlášen'}>
-                                    {users.map(user => {
-                                        return (
-                                            <NavDropdown.Item onClick={() => changeUser(user.id)}>
-                                                {user.fullName} ({user.role.name})
-                                            </NavDropdown.Item>
-                                        )
-                                    })}
-                                    <NavDropdown.Item onClick={() => changeUser(-1)}>
-                                        Odhlásit se
+                    <Nav className="justify-content-end flex-grow-1 pe-3">
+                        <NavDropdown align="end" title={user.fullName ?? 'Nepřihlášen'}>
+                            {users.map(user => {
+                                return (
+                                    <NavDropdown.Item onClick={() => changeUser(user.id)}>
+                                        {user.fullName} ({user.role.name})
                                     </NavDropdown.Item>
-                                </NavDropdown>
-                            </Nav>
+                                )
+                            })}
+                            <NavDropdown.Item onClick={() => changeUser(-1)}>
+                                Odhlásit se
+                            </NavDropdown.Item>
+                        </NavDropdown>
+                    </Nav>
                 </Container>
             </Navbar>
             <Outlet/>

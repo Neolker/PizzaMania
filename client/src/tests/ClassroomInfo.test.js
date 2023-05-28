@@ -1,5 +1,5 @@
 import ClassroomInfo from '../bricks/ClassroomInfo'
-import { render, screen } from '@testing-library/react'
+import {render, screen} from '@testing-library/react'
 
 // Testovací objekt třídy pro komponentu ClassroomInfo
 const testClassroom = {
@@ -8,7 +8,7 @@ const testClassroom = {
 
 test('should render ClassroomInfo', () => {
     // Vyrenderování komponenty, kterou budeme testovat
-    render(<ClassroomInfo classroom={testClassroom} />)
+    render(<ClassroomInfo classroom={testClassroom}/>)
 
     // Získání elementu dle testovacího ID, které jsme přidali v minulém kroku
     const element = screen.getByTestId('classroom-title')
@@ -18,11 +18,11 @@ test('should render ClassroomInfo', () => {
 })
 
 test('should render classroom name correctly', () => {
-    render(<ClassroomInfo classroom={testClassroom} />)
+    render(<ClassroomInfo classroom={testClassroom}/>)
 
     // Získání elementu z komponenty, který budeme testovat
     const nameElement = screen.getByTestId('classroom-name')
-    
+
     // Testování, zdali se element nachází na stránce
     expect(nameElement).toBeInTheDocument()
 

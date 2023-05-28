@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import {createContext, useState} from "react";
 
 const UserContext = createContext();
 
@@ -36,7 +36,7 @@ const users = [
 
 ];
 
-export function UserProvider({ children }) {
+export function UserProvider({children}) {
 
     // ak nie je prihlásený tak mu priradí rolu citatela
     const alreadyLogged = JSON.parse(sessionStorage.getItem('authUser'));
@@ -83,7 +83,6 @@ export function UserProvider({ children }) {
     //
     //     return null;
     // }
-
 
 
     const value = {

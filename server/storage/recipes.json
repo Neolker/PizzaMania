@@ -1,7 +1,7 @@
 [
   {
     "id": "REC-e6823940",
-    "name": "Pizza Margherita",
+    "name": "Pizza Margherita EDI",
     "description": "Klasická pizza",
     "procedure": "Předehřejte troubu na 220 °C...",
     "ingredients": [
@@ -53,7 +53,7 @@
   },
   {
     "id": "REC-979091fe",
-    "name": "Pizza Hawaii",
+    "name": "Pizza Hawaii Best",
     "description": "Klasická pizza v Itálii :D",
     "procedure": "Předehřejte troubu na 220 °C...",
     "ingredients": [

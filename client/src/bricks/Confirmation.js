@@ -1,7 +1,8 @@
 import Button from 'react-bootstrap/Button';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
-export default function Confirmation({ title, message, confirmText, onConfirm, children }) {
+
+export default function Confirmation({title, message, confirmText, onConfirm, children}) {
     const handleConfirm = () => {
         if (typeof onConfirm === "function") {
             onConfirm();
@@ -9,7 +10,7 @@ export default function Confirmation({ title, message, confirmText, onConfirm, c
     }
 
     const handleClose = () => document.body.click();
-    
+
     const popover = (
         <Popover id='popover-positioned-bottom'>
             <Popover.Header as="h3">{title}</Popover.Header>
@@ -23,7 +24,7 @@ export default function Confirmation({ title, message, confirmText, onConfirm, c
                         {confirmText}
                     </Button>
 
-                    <Button 
+                    <Button
                         variant='light'
                         onClick={handleClose}
                     >
