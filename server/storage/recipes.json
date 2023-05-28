@@ -50,5 +50,125 @@
         "amount": 10
       }
     ]
+  },
+  {
+    "id": "REC-979091fe",
+    "name": "Pizza Hawaii",
+    "description": "Klasická pizza v Itálii :D",
+    "procedure": "Předehřejte troubu na 220 °C...",
+    "ingredients": [
+      {
+        "id": "ING-239e0305",
+        "amount": 5
+      },
+      {
+        "id": "ING-7c09dfa1",
+        "amount": 15
+      },
+      {
+        "id": "ING-6ff59e25",
+        "amount": 10
+      }
+    ]
+  },
+  {
+    "id": "REC-2fb0cc21",
+    "name": "Pizza Salami",
+    "description": "Klasická pizza v Itálii :D",
+    "procedure": "Předehřejte troubu na 220 °C...",
+    "ingredients": [
+      {
+        "id": "ING-239e0305",
+        "amount": 5
+      },
+      {
+        "id": "ING-7ecadb7b",
+        "amount": 150
+      },
+      {
+        "id": "ING-6ff59e25",
+        "amount": 10
+      }
+    ]
+  },
+  {
+    "id": "REC-3642f413",
+    "name": "Pizza 123",
+    "description": "Klasická pizza v Itálii :D",
+    "procedure": "Předehřejte troubu na 220 °C...",
+    "ingredients": [
+      {
+        "id": "ING-239e0305",
+        "amount": 5
+      },
+      {
+        "id": "ING-7ecadb7b",
+        "amount": 150
+      },
+      {
+        "id": "ING-6ff59e25",
+        "amount": 10
+      }
+    ]
+  },
+  {
+    "id": "REC-387eff45",
+    "name": "Pizza 456",
+    "description": "Klasická pizza v Itálii :D",
+    "procedure": "Předehřejte troubu na 220 °C...",
+    "ingredients": [
+      {
+        "id": "ING-239e0305",
+        "amount": 5
+      },
+      {
+        "id": "ING-7ecadb7b",
+        "amount": 150
+      },
+      {
+        "id": "ING-6ff59e25",
+        "amount": 10
+      }
+    ]
+  },
+  {
+    "id": "REC-df3872b9",
+    "name": "Pizza 789",
+    "description": "Klasická pizza v Itálii :D",
+    "procedure": "Předehřejte troubu na 220 °C...",
+    "ingredients": [
+      {
+        "id": "ING-239e0305",
+        "amount": 5
+      },
+      {
+        "id": "ING-7ecadb7b",
+        "amount": 150
+      },
+      {
+        "id": "ING-6ff59e25",
+        "amount": 10
+      }
+    ]
+  },
+  {
+    "id": "REC-4332f685",
+    "name": "Pizza 789",
+    "description": "Klasická pizza v Itálii :DKlasická pizza v Itálii :DKlasická pizza v Itálii :DKlasická pizza v Itálii :D",
+    "procedure": "Předehřejte troubu na 220 °C...",
+    "ingredients": [
+      {
+        "id": "ING-239e0305",
+        "amount": 5
+      },
+      {
+        "id": "ING-7ecadb7b",
+        "amount": 150
+      },
+      {
+        "id": "ING-6ff59e25",
+        "amount": 10
+      }
+    ]
   }
 ]
