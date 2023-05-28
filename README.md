@@ -45,23 +45,23 @@
 - **POST** požadavky předávají parametry v JSON formátu v **Body**, většinou jde o data z formulářů
 - **GET** požadavky předávají parametry, které jsou součástí URL (route)
 
-| API               | http | vstup                                                           | vystup | příklad |
-| ----------------- | ---- | --------------------------------------------------------------- | ------ | ------- |
-| recipe/create     | POST | `name`, `description`, `procedure`                              | TBD    | ---     |
-| recipe/get        | GET  | `id`                                                            | TBD    | ---     |
-| recipe/update     | POST | `id`, `description`, `procedure`                                | TBD    | ---     |
-| recipe/delete     | POST | `id`                                                            | TBD    | ---     |
-| recipe/list       | GET  | -                                                               | TBD    | ---     |
-|                   |      |                                                                 |        |         |
-| recipe/add-ingredient | POST | `id_recipe`, `id_ingredient`, `amount`                      | TBD    | ---     |
-| recipe/delete-ingredient | POST | `id_recipe`, `id_ingredient`                             | TBD    | ---     |
-| recipe/update-ingredient | POST | `id_recipe`, `id_ingredient`, `amount`                   | TBD    | ---     |
-|                   |      |                                                                 |        |         |
-| ingredient/create | POST | `name`, `unit`                                                  | TBD    | ---     |
-| ingredient/get    | GET  | `id`                                                            | TBD    | ---     |
-| ingredient/update | POST | `id`, `name`, `unit`                                            | TBD    | ---     |
-| ingredient/delete | POST | `id`                                                            | TBD    | ---     |
-| ingredient/list   | GET  | -                                                               | TBD    | ---     |
+| API                      | http | vstup                                  | vystup | příklad |
+| ------------------------ | ---- | -------------------------------------- | ------ | ------- |
+| recipe/create            | POST | `name`, `description`, `procedure`     | TBD    | ---     |
+| recipe/get               | GET  | `id`                                   | TBD    | ---     |
+| recipe/update            | POST | `id`, `description`, `procedure`       | TBD    | ---     |
+| recipe/delete            | POST | `id`                                   | TBD    | ---     |
+| recipe/list              | GET  | -                                      | TBD    | ---     |
+|                          |      |                                        |        |         |
+| recipe/add-ingredient    | POST | `id_recipe`, `id_ingredient`, `amount` | TBD    | ---     |
+| recipe/delete-ingredient | POST | `id_recipe`, `id_ingredient`           | TBD    | ---     |
+| recipe/update-ingredient | POST | `id_recipe`, `id_ingredient`, `amount` | TBD    | ---     |
+|                          |      |                                        |        |         |
+| ingredient/create        | POST | `name`, `unit`                         | TBD    | ---     |
+| ingredient/get           | GET  | `id`                                   | TBD    | ---     |
+| ingredient/update        | POST | `id`, `name`, `unit`                   | TBD    | ---     |
+| ingredient/delete        | POST | `id`                                   | TBD    | ---     |
+| ingredient/list          | GET  | -                                      | TBD    | ---     |
 
 ## Příklady JSON databází
 ### recipes.json

@@ -170,5 +170,25 @@
         "amount": 10
       }
     ]
+  },
+  {
+    "id": "REC-a1e6279e",
+    "name": "Pizza El Nino",
+    "description": "Klasická pizza v Itálii :DK",
+    "procedure": "Předehřejte troubu na 220 °C...",
+    "ingredients": [
+      {
+        "id": "ING-e5a942bb",
+        "amount": 20
+      },
+      {
+        "id": "ING-e587bd34",
+        "amount": 30
+      },
+      {
+        "id": "ING-632b2f5f",
+        "amount": 30
+      }
+    ]
   }
 ]

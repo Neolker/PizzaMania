@@ -26,7 +26,7 @@ async function UpdateAbl(req, res) {
       res.status(400).send({ "error": "Validation of the input failed: id, name, description and procedure are required, minimal lenght: 2 characters in all variables." });
     }
   } catch (e) {
-    res.status(400).send({ "error": e.message });
+    res.status(500).send({ "error": e.message });
   }
 }
 

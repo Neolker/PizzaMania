@@ -18,5 +18,20 @@
     "id": "ING-7ecadb7b",
     "name": "Salám",
     "unit": "ks"
+  },
+  {
+    "id": "ING-e5a942bb",
+    "name": "Salám poličan",
+    "unit": "ks"
+  },
+  {
+    "id": "ING-e587bd34",
+    "name": "Hermelín",
+    "unit": "plátků"
+  },
+  {
+    "id": "ING-632b2f5f",
+    "name": "Brie",
+    "unit": "ks"
   }
 ]
