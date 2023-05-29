@@ -1,10 +1,13 @@
-import {useEffect, useState} from "react";
-import {useSearchParams} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import ClassroomInfo from "../bricks/ClassroomInfo";
 import StudentList from "../bricks/StudentList";
 import Icon from "@mdi/react";
-import {mdiLoading} from "@mdi/js";
+import { mdiLoading } from "@mdi/js";
 import styles from "../css/classroom.module.css";
+
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 function RecipeDetail() {
     const [recipeLoadCall, setRecipeLoadCall] = useState({
@@ -23,9 +26,9 @@ function RecipeDetail() {
         }).then(async (response) => {
             const responseJson = await response.json();
             if (response.status >= 400) {
-                setRecipeLoadCall({state: "error", error: responseJson});
+                setRecipeLoadCall({ state: "error", error: responseJson });
             } else {
-                setRecipeLoadCall({state: "success", data: responseJson});
+                setRecipeLoadCall({ state: "success", data: responseJson });
             }
         });
     }, [recipeId]);
@@ -35,26 +38,33 @@ function RecipeDetail() {
             case "pending":
                 return (
                     <div className={styles.loading}>
-                        <Icon size={2} path={mdiLoading} spin={true}/>
+                        <Icon size={2} path={mdiLoading} spin={true} />
                     </div>
                 );
             case "success":
                 return (
                     <>
                         <div>
-                            <div>{recipeLoadCall.data.name}</div>
-                            <div>{recipeLoadCall.data.description}</div>
-                            <div>{recipeLoadCall.data.procedure}</div>
-
-                        </div>
-
+                            <h1>{recipeLoadCall.data.name}</h1>
+                            <p>{recipeLoadCall.data.description}</p>
+                            <p>{recipeLoadCall.data.procedure}</p>
+                            <p><label>Počet porcí: </label>
+                                <input
+                                    className="col-sm-1"
+                                    type="number"
+                                    placeholder="1"
+                                    style={{ marginLeft: "1em" }}
+                                ></input>
+                            </p>
+                            <p>TODO Ingredience seznam</p>
+                        </div >
                     </>
                 );
             case "error":
                 return (
                     <div className={styles.error}>
-                        <div>Nepodařilo se načíst data o recepte.</div>
-                        <br/>
+                        <div>Nepodařilo se načíst data receptu.</div>
+                        <br />
                         <pre>{JSON.stringify(recipeLoadCall.error, null, 2)}</pre>
                     </div>
                 );
