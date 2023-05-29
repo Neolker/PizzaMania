@@ -3,13 +3,15 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 
 export default function Confirmation({title, message, confirmText, onConfirm, children}) {
+
+    const handleClose = () => document.body.click();
+
     const handleConfirm = () => {
         if (typeof onConfirm === "function") {
             onConfirm();
+            handleClose();
         }
     }
-
-    const handleClose = () => document.body.click();
 
     const popover = (
         <Popover id='popover-positioned-bottom'>
