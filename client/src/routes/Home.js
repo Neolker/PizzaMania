@@ -137,7 +137,7 @@ function Home() {
                         <Row className='justify-content-md-center'>
                             {card.map((recipe) =>
                                 <Col className='text-center mt-5'>
-                                    <Card style={{width: '18rem'}}>
+                                    <Card style={{width: '18rem', margin: 'auto'}}>
                                         <Placeholder className="rounded-top" as={Card.Image}>
                                             <Placeholder className="w-100 rounded-top" style={{height: '135px'}}/>
                                         </Placeholder>
