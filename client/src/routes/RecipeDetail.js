@@ -5,9 +5,8 @@ import StudentList from "../bricks/StudentList";
 import Icon from "@mdi/react";
 import { mdiLoading } from "@mdi/js";
 import styles from "../css/classroom.module.css";
-
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
+import Button from 'react-bootstrap/Button';
+import { useNavigate } from "react-router-dom";
 
 function RecipeDetail() {
     const [recipeLoadCall, setRecipeLoadCall] = useState({
@@ -16,6 +15,8 @@ function RecipeDetail() {
     let [searchParams] = useSearchParams();
 
     const recipeId = searchParams.get("id");
+
+    let navigate = useNavigate();
 
     useEffect(() => {
         setRecipeLoadCall({
@@ -56,7 +57,12 @@ function RecipeDetail() {
                                     style={{ marginLeft: "1em" }}
                                 ></input>
                             </p>
-                            <p>TODO Ingredience seznam</p>
+                            <p>
+                                TODO Ingredience seznam
+                            </p>
+                            <div className="d-grid gap-2">
+                                <Button variant="primary" onClick={() => navigate("/")}>Zpět na recepty</Button>
+                            </div>
                         </div >
                     </>
                 );
