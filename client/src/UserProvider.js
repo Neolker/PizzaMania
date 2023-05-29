@@ -1,11 +1,11 @@
-import {createContext, useState} from "react";
+import { createContext, useState } from "react";
 
 const UserContext = createContext();
 
 const roles = [
     {
         id: 0,
-        name: 'Čitateľ'
+        name: 'Čtenář'
     },
     {
         id: 1,
@@ -20,23 +20,23 @@ const roles = [
 const users = [
     {
         id: 0,
-        role: roles[2],
-        fullName: 'Bohuslav Růžička Správce',
+        role: roles[0],
+        fullName: 'Alena Kluhová (Čtenář)',
     },
     {
         id: 1,
         role: roles[1],
-        fullName: 'Václav Schuster Editor',
+        fullName: 'Václav Schuster (Editor)',
     },
     {
         id: 2,
-        role: roles[0],
-        fullName: 'Alena Kluhová Citatel',
+        role: roles[2],
+        fullName: 'Bohuslav Růžička (Správce)',
     },
 
 ];
 
-export function UserProvider({children}) {
+export function UserProvider({ children }) {
 
     // ak nie je prihlásený tak mu priradí rolu citatela
     const alreadyLogged = JSON.parse(sessionStorage.getItem('authUser'));
