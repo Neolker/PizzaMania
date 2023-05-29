@@ -73,6 +73,14 @@ function Home() {
         }
     }
 
+    function chunkArray(arr, size) {
+        let groupedArray = [];
+        for(let i = 0; i < arr.length; i += size) {
+            groupedArray.push(arr.slice(i, i+size));
+        }
+        return groupedArray ;
+    }
+
 
     function getRecipeList() {
         switch (listRecipeCall.state) {
@@ -124,32 +132,41 @@ function Home() {
                     </Card>
                 </Stack>);
             case "success":
-                return (<Row>
-                    {listRecipeCall.data.map((recipe) => {
+                return (
+                    chunkArray(listRecipeCall.data, 4).map( card =>
+                        <Row className='justify-content-md-center'>
+                            {card.map((recipe) =>
+                                <Col className='text-center mt-5'>
+                                    <Card style={{width: '18rem'}}>
+                                        <Placeholder className="rounded-top" as={Card.Image}>
+                                            <Placeholder className="w-100 rounded-top" style={{height: '135px'}}/>
+                                        </Placeholder>
+                                        <Card.Body>
+                                            <Card.Title>
+                                                {recipe.name}
+                                            </Card.Title>
+                                            <Card.Text>
+                                                {recipe.description}
+                                            </Card.Text>
 
-                        return (<Col>
-                            <Card style={{width: '18rem'}}>
-                                //TODO IMAGE
-                                <Card.Body>
-                                    <Card.Title>
-                                        {recipe.name}
-                                    </Card.Title>
-                                    <Card.Text>
-                                        {recipe.description}
-                                    </Card.Text>
-                                    <Button variant="primary"
-                                            onClick={() => navigate("/recipeDetail?id=" + recipe.id)}
-                                    >Otevřít</Button>
-                                    {(isEditor() || isAdmin()) && <Button variant="secondary"
-                                                                         onClick={() => handleAddRecipeShow(recipe)}>Upravit</Button>}
-                                    {(isAdmin()) && <RecipeDelete recipe={recipe}
-                                                                 onDelete={handleRecipeDelete}></RecipeDelete>}
+                                            <Button variant="primary"
+                                                    onClick={() => navigate("/recipeDetail?id=" + recipe.id)}
+                                            >Otevřít</Button>
+                                            <ButtonGroup className='ms-2'>
 
-                                </Card.Body>
-                            </Card>
-                        </Col>);
-                    })}
-                </Row>)
+                                                {(isEditor() || isAdmin()) && <Button variant="secondary"
+                                                                                      onClick={() => handleAddRecipeShow(recipe)}>Upravit</Button>}
+                                                {(isAdmin()) && <RecipeDelete recipe={recipe}
+                                                                              onDelete={handleRecipeDelete}></RecipeDelete>}
+                                            </ButtonGroup>
+
+                                        </Card.Body>
+                                    </Card>
+                                </Col>
+                            )}
+                        </Row>
+                    )
+                )
             case "error":
                 return (<div>
                     <Icon size={1} path={mdiAlertOctagonOutline}/> Error
@@ -167,7 +184,7 @@ function Home() {
                 <ButtonGroup vertical className='position-fixed bottom-0 end-0 mb-5 me-4'>
                     <Button variant="success" onClick={() => handleAddRecipeShow()}>Přidat recept</Button>
                     <Button variant="danger">Přidat ingredienci</Button>
-                </ButtonGroup> }
+                </ButtonGroup>}
 
 
             <RecipeForm

@@ -45,9 +45,8 @@ export default function RecipeDelete({recipe, onDelete, onError}) {
             confirmText="Smazat"
             onConfirm={handleDelete}
         >
-            <div>
-                <Button variant="danger">Smazat</Button>
-            </div>
+            <Button variant="danger">Smazat</Button>
+
         </Confirmation>
     )
 }
