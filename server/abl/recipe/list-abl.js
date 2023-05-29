@@ -5,7 +5,9 @@ let dao = new RecipeDao(path.join(__dirname, "..", "..", "storage", "recipes.jso
 async function ListAbl(req, res) {
   try {
     const recipeList = await dao.listRecipes();
-    res.json(recipeList);
+    setTimeout(function() {
+      res.json(recipeList);
+    },1000);
   } catch (e) {
     res.status(500).send({ "error": e.message });
   }
