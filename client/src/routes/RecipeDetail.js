@@ -6,32 +6,32 @@ import Icon from "@mdi/react";
 import {mdiLoading} from "@mdi/js";
 import styles from "../css/classroom.module.css";
 
-function ClassroomDetail() {
-    const [classroomLoadCall, setClassroomLoadCall] = useState({
+function RecipeDetail() {
+    const [recipeLoadCall, setRecipeLoadCall] = useState({
         state: "pending",
     });
     let [searchParams] = useSearchParams();
 
-    const classroomId = searchParams.get("id");
+    const recipeId = searchParams.get("id");
 
     useEffect(() => {
-        setClassroomLoadCall({
+        setRecipeLoadCall({
             state: "pending",
         });
-        fetch(`http://localhost:3000/classroom/load?id=${classroomId}`, {
+        fetch(`http://localhost:3000/recipe/get?id=${recipeId}`, {
             method: "GET",
         }).then(async (response) => {
             const responseJson = await response.json();
             if (response.status >= 400) {
-                setClassroomLoadCall({state: "error", error: responseJson});
+                setRecipeLoadCall({state: "error", error: responseJson});
             } else {
-                setClassroomLoadCall({state: "success", data: responseJson});
+                setRecipeLoadCall({state: "success", data: responseJson});
             }
         });
-    }, [classroomId]);
+    }, [recipeId]);
 
     function getChild() {
-        switch (classroomLoadCall.state) {
+        switch (recipeLoadCall.state) {
             case "pending":
                 return (
                     <div className={styles.loading}>
@@ -41,16 +41,21 @@ function ClassroomDetail() {
             case "success":
                 return (
                     <>
-                        <ClassroomInfo classroom={classroomLoadCall.data}/>
-                        <StudentList classroom={classroomLoadCall.data}/>
+                        <div>
+                            <div>{recipeLoadCall.data.name}</div>
+                            <div>{recipeLoadCall.data.description}</div>
+                            <div>{recipeLoadCall.data.procedure}</div>
+
+                        </div>
+
                     </>
                 );
             case "error":
                 return (
                     <div className={styles.error}>
-                        <div>Nepodařilo se načíst data o třídě.</div>
+                        <div>Nepodařilo se načíst data o recepte.</div>
                         <br/>
-                        <pre>{JSON.stringify(classroomLoadCall.error, null, 2)}</pre>
+                        <pre>{JSON.stringify(recipeLoadCall.error, null, 2)}</pre>
                     </div>
                 );
             default:
@@ -61,4 +66,4 @@ function ClassroomDetail() {
     return getChild();
 }
 
-export default ClassroomDetail;
+export default RecipeDetail;

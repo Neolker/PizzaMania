@@ -4,7 +4,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import ClassroomDetail from "./routes/ClassroomDetail";
+import RecipeDetail from "./routes/RecipeDetail";
 import Home from "./routes/Home";
 import SubjectList from "./routes/SubjectList";
 import StudentList from "./routes/StudentList";
@@ -18,7 +18,7 @@ root.render(
                 <Routes>
                     <Route path="/" element={<App/>}>
                         <Route path="" element={<Home/>}/>
-                        <Route path="ClassroomDetail" element={<ClassroomDetail/>}/>
+                        <Route path="RecipeDetail" element={<RecipeDetail/>}/>
                         <Route path="studentList" element={<StudentList/>}/>
                         <Route path="subjectList" element={<SubjectList/>}/>
                     </Route>
