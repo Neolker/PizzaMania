@@ -9,7 +9,8 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {useContext} from "react";
 import UserContext from "./UserProvider";
-import logo from "./logo_pizzamania.png"
+import logo from "./logo_pizzamania.png";
+
 
 function App() {
 
@@ -37,8 +38,6 @@ function App() {
                         />{' '}
                         PizzaMania
                     </Navbar.Brand>
-                    <Button variant="success">Přidat recept</Button>
-                    <Button variant="success">Přidat ingredienci</Button>
                     <Form className="d-flex">
                         <Form.Control
                             type="search"

@@ -12,6 +12,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import RecipeDelete from "../bricks/RecipeDelete";
 import RecipeForm from "../bricks/RecipeForm";
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 function Home() {
 
@@ -126,32 +127,27 @@ function Home() {
                 return (<Row>
                     {listRecipeCall.data.map((recipe) => {
 
-                        return (
-                            <Col>
-                                <Card style={{width: '18rem'}}>
-                                    //TODO IMAGE
-                                    <Card.Body>
-                                        <Card.Title>
-                                            {recipe.name}
-                                        </Card.Title>
-                                        <Card.Text>
-                                            {recipe.description}
-                                        </Card.Text>
-                                        <Button variant="primary"
-                                                onClick={() => navigate("/recipeDetail?id=" + recipe.id)}
-                                        >Otevřít</Button>
-                                        {
-                                            (isEditor() || isAdmin()) ? <Button variant="secondary"
-                                                                                onClick={() => handleAddRecipeShow(recipe)}>Upravit</Button> : ""
-                                        }
-                                        {
-                                            (isAdmin()) ? <RecipeDelete recipe={recipe}
-                                                                        onDelete={handleRecipeDelete}></RecipeDelete> : ""
-                                        }
+                        return (<Col>
+                            <Card style={{width: '18rem'}}>
+                                //TODO IMAGE
+                                <Card.Body>
+                                    <Card.Title>
+                                        {recipe.name}
+                                    </Card.Title>
+                                    <Card.Text>
+                                        {recipe.description}
+                                    </Card.Text>
+                                    <Button variant="primary"
+                                            onClick={() => navigate("/recipeDetail?id=" + recipe.id)}
+                                    >Otevřít</Button>
+                                    {(isEditor() || isAdmin()) && <Button variant="secondary"
+                                                                         onClick={() => handleAddRecipeShow(recipe)}>Upravit</Button>}
+                                    {(isAdmin()) && <RecipeDelete recipe={recipe}
+                                                                 onDelete={handleRecipeDelete}></RecipeDelete>}
 
-                                    </Card.Body>
-                                </Card>
-                            </Col>);
+                                </Card.Body>
+                            </Card>
+                        </Col>);
                     })}
                 </Row>)
             case "error":
@@ -163,16 +159,24 @@ function Home() {
         }
     }
 
-    return (<Container>
-        {getRecipeList()}
+    return (
+        <Container>
+            {getRecipeList()}
 
-        <RecipeForm
-            show={addRecipeShow.state}
-            recipe={addRecipeShow.data}
-            setAddGradeShow={setAddRecipeShow}
-            onComplete={(recipe) => handleRecipeAdded(recipe)}
-        />
-    </Container>);
+            {(isEditor() || isAdmin()) &&
+                <ButtonGroup vertical className='position-fixed bottom-0 end-0 mb-5 me-4'>
+                    <Button variant="success" onClick={() => handleAddRecipeShow()}>Přidat recept</Button>
+                    <Button variant="danger">Přidat ingredienci</Button>
+                </ButtonGroup> }
+
+
+            <RecipeForm
+                show={addRecipeShow.state}
+                recipe={addRecipeShow.data}
+                setAddGradeShow={setAddRecipeShow}
+                onComplete={(recipe) => handleRecipeAdded(recipe)}
+            />
+        </Container>);
 }
 
 export default Home;
