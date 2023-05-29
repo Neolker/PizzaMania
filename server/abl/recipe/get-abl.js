@@ -22,7 +22,11 @@ async function GetAbl(req, res) {
       if (!recipe) {
         res.status(400).send({ "error": "Recipe with id " + recipeId + " does not exist." });
       }
-      res.json(recipe);
+      // simulate delay in production build
+      setTimeout(function() {
+        res.json(recipe);
+      },1000);
+
     } else {
       res.status(400).send({ "error": "Validation of the input failed: id is required." });
     }
