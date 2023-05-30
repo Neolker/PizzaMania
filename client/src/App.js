@@ -9,7 +9,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {useContext} from "react";
 import UserContext from "./UserProvider";
-import logo from "./logo_pizzamania.png";
+import logo from "./logo_pizzamania_new.png";
 
 
 function App() {
