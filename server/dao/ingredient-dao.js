@@ -21,7 +21,7 @@ class IngredientDao {
       "unit": "A piece"
     };
     if (ingredient.name.length < 1 || ingredient.unit.length < 1) {
-      throw new Error("Name and unit are required, ingredient (name: " + ingredient.name + ", unit: " + ingredient.unit + ") has not been created. Minimal lenght: 1 characters in the name and 1 characters in the unit.");
+      throw new Error("Name and unit are required, ingredient (name: " + ingredient.name + ", unit: " + ingredient.unit + ") has not been created. Minimal lenght: 1 character in the name and 1 character in the unit.");
     }
     ingredientPrototype.name = ingredient.name;
     ingredientPrototype.unit = ingredient.unit;
@@ -43,7 +43,7 @@ class IngredientDao {
       throw new Error("Ingredient with given id " + ingredient.id + " does not exists.");
     } else {
       if (ingredient.name.length < 1 || ingredient.unit.length < 1) {
-        throw new Error("Name and unit are required, ingredient (name: " + ingredient.name + ", unit: " + ingredient.unit + ") has not been created. Minimal lenght: 1 characters in the name and 1 characters in the unit.");
+        throw new Error("Name and unit are required, ingredient (name: " + ingredient.name + ", unit: " + ingredient.unit + ") has not been created. Minimal lenght: 1 character in the name and 1 character in the unit.");
       }
       let ingredientPrototype = {
         "id": ingredient.id,
