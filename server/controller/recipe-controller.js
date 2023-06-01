@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
+const SuperCreateAbl = require("../abl/recipe/super-create-abl");
+const SuperUpdateAbl = require("../abl/recipe/super-update-abl");
+
 const CreateAbl = require("../abl/recipe/create-abl");
 const GetAbl = require("../abl/recipe/get-abl");
 const UpdateAbl = require("../abl/recipe/update-abl");
@@ -10,6 +13,14 @@ const ListAbl = require("../abl/recipe/list-abl");
 const AddIngredientIntoRecipeAbl = require("../abl/recipe/add-ingredient-into-recipe-abl");
 const UpdateIngredientInRecipeAbl = require("../abl/recipe/update-ingredient-in-recipe-abl");
 const DeleteIngredientFromRecipeAbl = require("../abl/recipe/delete-ingredient-from-recipe-abl");
+
+router.post("/super-create", async (req, res) => {
+  await SuperCreateAbl(req, res);
+});
+
+router.post("/super-update", async (req, res) => {
+  await SuperUpdateAbl(req, res);
+});
 
 router.post("/create", async (req, res) => {
   await CreateAbl(req, res);
