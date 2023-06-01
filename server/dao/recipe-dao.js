@@ -100,23 +100,23 @@ class RecipeDao {
   async addIngredientIntoRecipe(ingredient) {
     ingredient.amount = parseInt(ingredient.amount);
     if (ingredient.amount < 1) {
-      throw new Error("Amount can not be less than 1. Nothig has been added.");
+      throw new Error("Amount can not be less than 1. Ingredient has not been added.");
     }
     let recipeList = await this._loadAllRecipes();
     const recipeIndex = recipeList.findIndex((b) => b.id === ingredient.id_recipe);
     if (recipeIndex < 0) {
-      throw new Error("Recipe with given id " + ingredient.id_recipe + " does not exists. Nothig has been added.");
+      throw new Error("Recipe with given id " + ingredient.id_recipe + " does not exists. Ingredient not has been added.");
     }
     let recipe = recipeList[recipeIndex];
     recipe.ingredients.forEach(function (ing) {
       if (ing.id == ingredient.id_ingredient) {
-        throw new Error("Recipe with given id " + ingredient.id_recipe + " have ingredient id " + ingredient.id_ingredient + ". Nothig has been added.");
+        throw new Error("Recipe with given id " + ingredient.id_recipe + " have ingredient id " + ingredient.id_ingredient + ". Ingredient has not been added.");
       }
     });
     let ingredientD = await new IngredientDao(path.join("storage", "ingredients.json"));
     let ingredientExist = await ingredientD.getIngredient(ingredient.id_ingredient);
     if (!ingredientExist) {
-      throw new Error("Ingredient with given id " + ingredient.id_ingredient + " does not exists. Nothig has been added.");
+      throw new Error("Ingredient with given id " + ingredient.id_ingredient + " does not exists. Ingredient has not been added.");
     }
     recipe.ingredients.push({
       "id": ingredient.id_ingredient,
@@ -186,6 +186,77 @@ class RecipeDao {
     return recipeList[recipeIndex];
   }
 
+  async superCreateRecipe(recipe){
+    let createdRecipe = await this.createRecipe(recipe);
+    let finalRecipe;
+    if(createdRecipe){
+      if(recipe.ingredients && Array.isArray(recipe.ingredients) ){
+        try{
+          for (let i = 0, len = recipe.ingredients.length; i < len; i++) {
+            let recipeWithIngredience = await this.addIngredientIntoRecipe({
+              "id_recipe":createdRecipe.id,
+              "id_ingredient":recipe.ingredients[i].id,
+              "amount":recipe.ingredients[i].amount
+              });
+            }
+        } catch (e) {
+          let rollback = await this.deleteRecipe(createdRecipe.id);
+          throw new Error("Some of ingredient(s) cannot be added into the Recipe. Check your data for validation or check if ingredient already exists. Recipe has not been created.");
+        }
+        finalRecipe = await this.getRecipe(createdRecipe.id); // Re-load recipe for ingredients   
+      }else{
+        finalRecipe = createdRecipe; // No ingrediens, no re-load recipe, take recipe as it is 
+      }    
+    }else{
+      throw new Error("Validation of the input failed: name, description and procedure of the recipe are required, minimal lenght: 2 characters in all variables. Recipe has not been created.");
+    }
+    return finalRecipe;
+  }
+  
+  async superUpdateRecipe(recipe){
+    let updatedRecipe = await this.getRecipe(recipe.id);
+    if(updatedRecipe){
+      let update = await this.updateRecipe(recipe);
+      if(update){
+        let erase = await this._deleteAllIngredientsFromRecipe(updatedRecipe.id);   
+        if(recipe.ingredients && Array.isArray(recipe.ingredients) ){
+          for (let j = 0, lem = recipe.ingredients.length; j < lem; j++) {
+            if(recipe.ingredients[j] !== null){
+              let newIngredience = await this.addIngredientIntoRecipe({
+                "id_recipe":update.id,
+                "id_ingredient":recipe.ingredients[j].id,
+                "amount":recipe.ingredients[j].amount
+                });
+              }
+            }
+          }
+      }else{
+        throw new Error("Recipe with id "+recipe.id+" has has not been updated.");
+      }
+    }else{
+      throw new Error("Recipe with id "+recipe.id+" not found. Update has not been successfull.");
+    }
+    let finalRecipe = await this.getRecipe(recipe.id);
+    return finalRecipe;
+  }
+  
+  async _deleteAllIngredientsFromRecipe(id) {
+    let recipeList = await this._loadAllRecipes();
+    const recipeIndex = recipeList.findIndex((b) => b.id === id);
+    if (recipeIndex < 0) {
+      throw new Error("Recipe with given id " + id + " does not exists. Nothing has been removed.");
+    }
+    let recipe = recipeList[recipeIndex];
+    let newIngs = [];
+    recipe.ingredients = newIngs;
+    recipeList[recipeIndex] = {
+      ...recipeList[recipeIndex],
+      ...recipe,
+    };
+    await wf(this._getStorageLocation(), JSON.stringify(recipeList, null, 2));
+    return recipeList[recipeIndex];
+  }
+  
   async _loadAllRecipes() {
     let recipeList;
     try {
