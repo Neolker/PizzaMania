@@ -45,17 +45,17 @@
 - **POST** požadavky předávají parametry v JSON formátu v **Body**, většinou jde o data z formulářů
 - **GET** požadavky předávají parametry, které jsou součástí URL (route)
                                         
-| URI                      | TYP  | VSTUP                                                                           | VÝSTUP | 
-| ------------------------ | ---- | ------------------------------------------------------------------------------- | ------ | 
-| recipe/super-create      | POST | `name`, `description`, `procedure`, `ingredients[] {id, amount}`                | TBD    |
-| recipe/super-update      | POST | `id`, `name`, `description`, `procedure`, `ingredients[] {id, amount}`          | TBD    | 
-|                          |      |                                                                                 |        |  
-| recipe/create            | POST | `name`, `description`, `procedure`                                              | TBD    | 
-| recipe/get               | GET  | `id`                                                                            | TBD    | 
-| recipe/update            | POST | `id`, `description`, `procedure`                                                | TBD    | 
-| recipe/delete            | POST | `id`                                                                            | TBD    |
-| recipe/list              | GET  | -                                                                               | TBD    | 
-|                          |      |                                                                                 |        |    
+| URI                      | MERODA | VSTUP                                                                         | VÝSTUP                                                                  | 
+| ------------------------ | ---- | ------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | 
+| recipe/super-create      | POST | `name`, `description`, `procedure`, `ingredients[] {id, amount}`                | `id`,  `name`, `description`, `procedure`, `ingredients[] {id, amount}` |
+| recipe/super-update      | POST | `id`, `name`, `description`, `procedure`, `ingredients[] {id, amount}`          | `id`,  `name`, `description`, `procedure`, `ingredients[] {id, amount}` | 
+|                          |      |                                                                                 |                                                                         |  
+| recipe/create            | POST | `name`, `description`, `procedure`                                              | `id`,  `name`, `description`, `procedure`, `ingredients[] {id, amount}` | 
+| recipe/get               | GET  | `id`                                                                            | `id`,  `name`, `description`, `procedure`, `ingredients[] {id, amount}` | 
+| recipe/update            | POST | `id`, `name`, `description`, `procedure`                                        | `id`,  `name`, `description`, `procedure`, `ingredients[] {id, amount}` | 
+| recipe/delete            | POST | `id`                                                                            | -                                                                       |
+| recipe/list              | GET  | -                                                                               | `recipes[] {id,name,description,procedure,ingredients[] {id, amount} }` | 
+|                          |      |                                                                                 |                                                                         |
 | recipe/add-ingredient    | POST | `id_recipe`, `id_ingredient`, `amount`                                          | `id`,  `name`, `description`, `procedure`, `ingredients[] {id, amount}` | 
 | recipe/delete-ingredient | POST | `id_recipe`, `id_ingredient`                                                    | `id`,  `name`, `description`, `procedure`, `ingredients[] {id, amount}` | 
 | recipe/update-ingredient | POST | `id_recipe`, `id_ingredient`, `amount`                                          | `id`,  `name`, `description`, `procedure`, `ingredients[] {id, amount}` | 
