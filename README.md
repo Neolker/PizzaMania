@@ -45,7 +45,7 @@
 - **POST** požadavky předávají parametry v JSON formátu v **Body**, většinou jde o data z formulářů
 - **GET** požadavky předávají parametry, které jsou součástí URL (route)
                                         
-| URI                      | MERODA | VSTUP                                                                         | VÝSTUP                                                                  | 
+| URI                      | METODA | VSTUP                                                                         | VÝSTUP                                                                  | 
 | ------------------------ | ---- | ------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | 
 | recipe/super-create      | POST | `name`, `description`, `procedure`, `ingredients[] {id, amount}`                | `id`,  `name`, `description`, `procedure`, `ingredients[] {id, amount}` |
 | recipe/super-update      | POST | `id`, `name`, `description`, `procedure`, `ingredients[] {id, amount}`          | `id`,  `name`, `description`, `procedure`, `ingredients[] {id, amount}` | 
