@@ -56,9 +56,9 @@
 | recipe/delete            | POST | `id`                                                                           | TBD    |
 | recipe/list              | GET  | -                                                                              | TBD    | 
 |                          |      |                                                                                |        |    
-| recipe/add-ingredient    | POST | `id_recipe`, `id_ingredient`, `amount`                                         | TBD    | 
-| recipe/delete-ingredient | POST | `id_recipe`, `id_ingredient`                                                   | TBD    | 
-| recipe/update-ingredient | POST | `id_recipe`, `id_ingredient`, `amount`                                         | TBD    | 
+| recipe/add-ingredient    | POST | `id_recipe`, `id_ingredient`, `amount`                                         | `id`,  `name`, `description`, `procedure`, `ingredients[] {id_ingredient,amount}`    | 
+| recipe/delete-ingredient | POST | `id_recipe`, `id_ingredient`                                                   | `id`,  `name`, `description`, `procedure`, `ingredients[] {id_ingredient,amount}`    | 
+| recipe/update-ingredient | POST | `id_recipe`, `id_ingredient`, `amount`                                         | `id`,  `name`, `description`, `procedure`, `ingredients[] {id_ingredient,amount}`    | 
 |                          |      |                                                                                |        |    
 | ingredient/create        | POST | `name`, `unit`                                                                 | `id`, `name`, `unit`              |
 | ingredient/get           | GET  | `id`                                                                           | `id`, `name`, `unit`              | 
