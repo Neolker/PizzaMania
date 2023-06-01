@@ -105,7 +105,7 @@ class RecipeDao {
     let recipeList = await this._loadAllRecipes();
     const recipeIndex = recipeList.findIndex((b) => b.id === ingredient.id_recipe);
     if (recipeIndex < 0) {
-      throw new Error("Recipe with given id " + ingredient.id_recipe + " does not exists. Ingredient not has been added.");
+      throw new Error("Recipe with given id " + ingredient.id_recipe + " does not exists. Ingredient has not been added.");
     }
     let recipe = recipeList[recipeIndex];
     recipe.ingredients.forEach(function (ing) {
@@ -137,7 +137,7 @@ class RecipeDao {
     let recipeList = await this._loadAllRecipes();
     const recipeIndex = recipeList.findIndex((b) => b.id === ingredient.id_recipe);
     if (recipeIndex < 0) {
-      throw new Error("Recipe with given id " + ingredient.id_recipe + " does not exists. Nothig has been edited.");
+      throw new Error("Recipe with given id " + ingredient.id_recipe + " does not exists. Nothing has been edited.");
     }
     let recipe = recipeList[recipeIndex];
     let updated = 0;
@@ -148,7 +148,7 @@ class RecipeDao {
       }
     });
     if (updated == 0) {
-      throw new Error("Recipe with given id " + ingredient.id_recipe + " does not have ingredient id " + ingredient.id_ingredient + ". Nothig has been edited.");
+      throw new Error("Recipe with given id " + ingredient.id_recipe + " does not have ingredient id " + ingredient.id_ingredient + ". Nothing has been edited.");
     }
     recipeList[recipeIndex] = {
       ...recipeList[recipeIndex],
@@ -174,7 +174,7 @@ class RecipeDao {
       }
     });
     if (updated == 0) {
-      throw new Error("Recipe with given id " + ingredient.id_recipe + " does not have ingredient id " + ingredient.id_ingredient + ". Nothig has been removed.");
+      throw new Error("Recipe with given id " + ingredient.id_recipe + " does not have ingredient id " + ingredient.id_ingredient + ". Nothing has been removed.");
     } else {
       recipe.ingredients = newIngs;
       recipeList[recipeIndex] = {
@@ -244,7 +244,7 @@ class RecipeDao {
     let recipeList = await this._loadAllRecipes();
     const recipeIndex = recipeList.findIndex((b) => b.id === id);
     if (recipeIndex < 0) {
-      throw new Error("Recipe with given id " + id + " does not exists. Nothing has been removed.");
+      throw new Error("Recipe with given id " + id + " does not exists. No ingredients has been removed.");
     }
     let recipe = recipeList[recipeIndex];
     let newIngs = [];
