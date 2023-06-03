@@ -38,15 +38,7 @@ function App() {
                         />{' '}
                         PizzaMania
                     </Navbar.Brand>
-                    <Form className="d-flex">
-                        <Form.Control
-                            type="search"
-                            placeholder="Hledat"
-                            className="me-2"
-                            aria-label="Search"
-                        />
-                        <Button variant="outline-success">Hledat</Button>
-                    </Form>
+
                     <Nav className="justify-content-end flex-grow-1 pe-3">
                         <NavDropdown align="end" title={user.fullName ?? 'Nepřihlášen'}>
                             {users.map(user => {

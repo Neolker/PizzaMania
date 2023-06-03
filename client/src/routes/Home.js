@@ -1,4 +1,4 @@
-import {useContext, useEffect, useState} from "react";
+import {useContext, useEffect, useMemo, useState} from "react";
 import UserContext from "../UserProvider";
 import {useNavigate} from "react-router-dom";
 import Icon from "@mdi/react";
@@ -14,6 +14,9 @@ import RecipeDelete from "../bricks/RecipeDelete";
 import RecipeForm from "../bricks/RecipeForm";
 import IngredientForm from "../bricks/IngredientForm"
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Form from "react-bootstrap/Form";
+import placeholder from "../pizza_placeholder.png";
+import {CardImg} from "react-bootstrap";
 
 function Home() {
 
@@ -27,6 +30,8 @@ function Home() {
     const [addIngredientShow, setAddIngredientShow] = useState({
         state: false
     });
+
+    const [searchBy, setSearchBy] = useState("");
 
     const {isEditor, isAdmin} = useContext(UserContext);
 
@@ -83,12 +88,38 @@ function Home() {
         }
     }
 
+    const filteredData = useMemo(() => {
+        if (listRecipeCall.state === "success") {
+            return (listRecipeCall.data.filter((recipe) => {
+                        return (
+                            recipe.name.toLowerCase().includes(searchBy) ||
+                            recipe.description.toLowerCase().includes(searchBy)
+                        )
+                    }
+                )
+            )
+        }
+        return listRecipeCall;
+    }, [searchBy, listRecipeCall])
+
+    function handleSearchRecipe(event) {
+        event.preventDefault();
+
+        setSearchBy(event.target["searchInput"].value.toLowerCase());
+        console.log("searchBegin")
+    }
+
+    function handleSearchDelete(event) {
+        if (!event.target.value) setSearchBy("");
+        console.log("searchClose")
+    }
+
     function chunkArray(arr, size) {
         let groupedArray = [];
-        for(let i = 0; i < arr.length; i += size) {
-            groupedArray.push(arr.slice(i, i+size));
+        for (let i = 0; i < arr.length; i += size) {
+            groupedArray.push(arr.slice(i, i + size));
         }
-        return groupedArray ;
+        return groupedArray;
     }
 
 
@@ -143,14 +174,12 @@ function Home() {
                 </Stack>);
             case "success":
                 return (
-                    chunkArray(listRecipeCall.data, 4).map( (card, index) =>
+                    chunkArray(filteredData, 4).map((card, index) =>
                         <Row className='justify-content-md-center' accessKey={index}>
                             {card.map((recipe) =>
-                                <Col className='text-center mt-5'   >
+                                <Col className='text-center mt-5'>
                                     <Card style={{width: '18rem', margin: 'auto'}} accessKey={recipe.id}>
-                                        <Placeholder className="rounded-top" as={Card.Image}  >
-                                            <Placeholder className="w-100 rounded-top" style={{height: '135px'}}/>
-                                        </Placeholder>
+                                        <Card.Img variant="top" src={placeholder} />
                                         <Card.Body>
                                             <Card.Title>
                                                 {recipe.name}
@@ -187,9 +216,26 @@ function Home() {
     }
 
 
-
     return (
+
         <Container>
+
+            <Row className="w-25 m-auto">
+                <Form className="d-flex" onSubmit={handleSearchRecipe}>
+                    <Form.Control
+                        id={"searchInput"}
+                        type="search"
+                        placeholder="Hledat"
+                        className="me-2"
+                        aria-label="Search"
+                        onChange={(e) => handleSearchDelete(e)}
+                    />
+                    <Button variant="outline-success" type="submit">Hledat</Button>
+                </Form>
+
+            </Row>
+
+
             {getRecipeList()}
 
             {(isEditor() || isAdmin()) &&
@@ -209,7 +255,7 @@ function Home() {
             <IngredientForm
                 show={addIngredientShow.state}
                 setAddIngredientShow={setAddIngredientShow}
-                onComplete={(ingredient) => handleIngredientAdded(ingredient) }
+                onComplete={(ingredient) => handleIngredientAdded(ingredient)}
             />
         </Container>);
 }
