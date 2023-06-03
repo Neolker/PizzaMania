@@ -103,13 +103,12 @@ export default function RecipeFormIngredientsList({formData, setFormData, setFie
                             Vyberte ingredienci
                         </Form.Control.Feedback>
                     </Form.Group>
-
                     <Form.Group as={Col} className="mb-3">
                         <Form.Label>Množství</Form.Label>
                         <Form.Control
                             type="number"
                             name="amount"
-                            defaultValue={ingredient.amount}
+                            value={ingredient.amount}
                             onChange={(e) => setField(e, index)}
                             min={1}
                             required
