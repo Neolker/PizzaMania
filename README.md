@@ -36,6 +36,9 @@
 - V druhém terminálu si spustíme **client**:
   - Opět se přesuneme do složky clienta  `cd .\client\`
   - Příkaz `npm install` nainstaluje všechny potřebné balíčky (React.js apod.)
+  - Příkaz `npm run eject` nám dovoli použit SCSS
+  - Příkaz `npm i sass-loader node-sass save` nainstaluje sass-loader který nám pomuze skompilobvat SCSS
+  - Příkaz `npm i bootstrap-icons ` nainstaluje všechny ikony od Bootstrap
   - **Client** potom spustíme stejným příkazem `npm start`
   - **Client** by se měl spustit sám v prohlížeči na adrese: http://localhost:3000/
   - Ukončit **client** potom stejnou zkratkou `CTRL + C`
