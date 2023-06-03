@@ -16,7 +16,6 @@ import IngredientForm from "../bricks/IngredientForm"
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Form from "react-bootstrap/Form";
 import placeholder from "../pizza_placeholder.png";
-import {CardImg} from "react-bootstrap";
 
 function Home() {
 
@@ -173,11 +172,11 @@ function Home() {
             case "success":
                 return (
                     chunkArray(filteredData, 4).map((card, index) =>
-                        <Row className='justify-content-md-center' accessKey={index}>
+                        <Row className='justify-content-md-center'>
                             {card.map((recipe) =>
                                 <Col className='text-center mt-5'>
-                                    <Card style={{width: '18rem', margin: 'auto'}} accessKey={recipe.id}>
-                                        <Card.Img variant="top" src={placeholder} />
+                                    <Card style={{width: '18rem', margin: 'auto'}}>
+                                        <Card.Img variant="top" src={placeholder}/>
                                         <Card.Body>
                                             <Card.Title>
                                                 {recipe.name}

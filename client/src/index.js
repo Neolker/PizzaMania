@@ -6,8 +6,6 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import RecipeDetail from "./routes/RecipeDetail";
 import Home from "./routes/Home";
-import SubjectList from "./routes/SubjectList";
-import StudentList from "./routes/StudentList";
 import {UserProvider} from "./UserProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -19,8 +17,6 @@ root.render(
                     <Route path="/" element={<App/>}>
                         <Route path="" element={<Home/>}/>
                         <Route path="RecipeDetail" element={<RecipeDetail/>}/>
-                        <Route path="studentList" element={<StudentList/>}/>
-                        <Route path="subjectList" element={<SubjectList/>}/>
                     </Route>
                 </Routes>
             </BrowserRouter>

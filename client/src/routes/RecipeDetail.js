@@ -1,12 +1,8 @@
-import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import ClassroomInfo from "../bricks/ClassroomInfo";
-import StudentList from "../bricks/StudentList";
+import {useEffect, useState} from "react";
+import {useNavigate, useSearchParams} from "react-router-dom";
 import Icon from "@mdi/react";
-import { mdiLoading } from "@mdi/js";
-import styles from "../css/classroom.module.css";
+import {mdiLoading} from "@mdi/js";
 import Button from 'react-bootstrap/Button';
-import { useNavigate } from "react-router-dom";
 
 function RecipeDetail() {
     const [recipeLoadCall, setRecipeLoadCall] = useState({
@@ -27,9 +23,9 @@ function RecipeDetail() {
         }).then(async (response) => {
             const responseJson = await response.json();
             if (response.status >= 400) {
-                setRecipeLoadCall({ state: "error", error: responseJson });
+                setRecipeLoadCall({state: "error", error: responseJson});
             } else {
-                setRecipeLoadCall({ state: "success", data: responseJson });
+                setRecipeLoadCall({state: "success", data: responseJson});
             }
         });
     }, [recipeId]);
@@ -38,8 +34,8 @@ function RecipeDetail() {
         switch (recipeLoadCall.state) {
             case "pending":
                 return (
-                    <div className={styles.loading}>
-                        <Icon size={2} path={mdiLoading} spin={true} />
+                    <div >
+                        <Icon size={2} path={mdiLoading} spin={true}/>
                     </div>
                 );
             case "success":
@@ -54,7 +50,7 @@ function RecipeDetail() {
                                     className="col-sm-1"
                                     type="number"
                                     placeholder="1"
-                                    style={{ marginLeft: "1em" }}
+                                    style={{marginLeft: "1em"}}
                                 ></input>
                             </p>
                             <p>
@@ -63,14 +59,14 @@ function RecipeDetail() {
                             <div className="d-grid gap-2">
                                 <Button variant="primary" onClick={() => navigate("/")}>Zpět na recepty</Button>
                             </div>
-                        </div >
+                        </div>
                     </>
                 );
             case "error":
                 return (
-                    <div className={styles.error}>
+                    <div>
                         <div>Nepodařilo se načíst data receptu.</div>
-                        <br />
+                        <br/>
                         <pre>{JSON.stringify(recipeLoadCall.error, null, 2)}</pre>
                     </div>
                 );
