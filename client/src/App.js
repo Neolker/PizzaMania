@@ -4,7 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+//import "bootstrap/dist/scss/bootstrap.min.scss";
 import {useContext} from "react";
 import UserContext from "./UserProvider";
 import logo from "./logo_pizzamania_new.png";
@@ -19,9 +19,8 @@ function App() {
     return (
         <div className="App">
             <Navbar
-                fixed="top"
-                expand={"sm"}
-                className="mb-3"
+                expand={"md"}
+                className="mb-5 py-sm-3"
                 bg="dark"
                 variant="dark"
             >

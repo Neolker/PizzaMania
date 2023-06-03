@@ -14,7 +14,7 @@ export default function Confirmation({title, message, confirmText, onConfirm, ch
     }
 
     const popover = (
-        <Popover id='popover-positioned-bottom'>
+        <Popover id='popover-positioned-left'>
             <Popover.Header as="h3">{title}</Popover.Header>
             <Popover.Body>
                 {message}
@@ -27,7 +27,7 @@ export default function Confirmation({title, message, confirmText, onConfirm, ch
                     </Button>
 
                     <Button
-                        variant='light'
+                        variant='dark'
                         onClick={handleClose}
                     >
                         Zrušit
@@ -43,8 +43,8 @@ export default function Confirmation({title, message, confirmText, onConfirm, ch
         <>
             <OverlayTrigger
                 trigger="click"
-                key="bottom"
-                placement="bottom"
+                key="left"
+                placement="left"
                 overlay={popover}
                 rootClose
             >

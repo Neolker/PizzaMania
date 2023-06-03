@@ -82,7 +82,7 @@ export default function RecipeFormIngredientsList({formData, setFormData, setFie
 
 
                 <Row accessKey={index} onHide={handleClose}>
-                    <Form.Group as={Col} className="mb-3">
+                    <Form.Group className="mb-3 ">
                         <Form.Label>Název</Form.Label>
                         <Form.Select
                             name="id"
@@ -135,9 +135,8 @@ export default function RecipeFormIngredientsList({formData, setFormData, setFie
                         </Form.Control.Feedback>
                     </Form.Group>
 
-                    <Form.Group as={Col} className="mb-3">
-                        <Form.Label>Odstranit</Form.Label>
-                        <Button variant="danger" onClick={() => removeIngredient(index)}>Odstranit</Button>
+                    <Form.Group as={Col} className="mb-3 d-flex justify-content-start align-items-end">
+                        <Button variant="danger" onClick={() => removeIngredient(index)}><i className="bi bi-trash-fill"></i></Button>
                     </Form.Group>
 
                 </Row>

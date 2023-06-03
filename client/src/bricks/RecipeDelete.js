@@ -1,6 +1,8 @@
 import Confirmation from './Confirmation';
 import {useState} from 'react';
 import Button from "react-bootstrap/Button";
+import {Image} from "react-bootstrap";
+import deleteIcon from "../delete-icon.svg";
 
 export default function RecipeDelete({recipe, onDelete, onError}) {
     const [deleteRecipeCall, setDeleteRecipeCall] = useState({
@@ -45,7 +47,8 @@ export default function RecipeDelete({recipe, onDelete, onError}) {
             confirmText="Smazat"
             onConfirm={handleDelete}
         >
-            <Button variant="danger">Smazat</Button>
+
+            <Button variant="danger"><i className="bi bi-trash-fill"></i></Button>
 
         </Confirmation>
     )

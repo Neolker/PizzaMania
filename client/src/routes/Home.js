@@ -17,6 +17,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Form from "react-bootstrap/Form";
 import placeholder from "../pizza_placeholder.png";
 
+
 function Home() {
 
     const [listRecipeCall, setListRecipeCall] = useState({
@@ -175,7 +176,7 @@ function Home() {
                         <Row className='justify-content-md-center'>
                             {card.map((recipe) =>
                                 <Col className='text-center mt-5'>
-                                    <Card style={{width: '18rem', margin: 'auto'}}>
+                                    <Card style={{width: '18rem', margin: 'auto'}} >
                                         <Card.Img variant="top" src={placeholder}/>
                                         <Card.Body>
                                             <Card.Title>
@@ -191,7 +192,7 @@ function Home() {
                                             <ButtonGroup className='ms-2'>
 
                                                 {(isEditor() || isAdmin()) && <Button variant="secondary"
-                                                                                      onClick={() => handleAddRecipeShow(recipe)}>Upravit</Button>}
+                                                                                      onClick={() => handleAddRecipeShow(recipe)}><i className="bi bi-pen"></i> Upravit</Button>}
                                                 {(isAdmin()) && <RecipeDelete recipe={recipe}
                                                                               onDelete={handleRecipeDelete}></RecipeDelete>}
                                             </ButtonGroup>
@@ -217,17 +218,17 @@ function Home() {
 
         <Container>
 
-            <Row className="w-50 m-auto">
-                <Form className="d-flex" onSubmit={handleSearchRecipe}>
+            <Row className="m-auto">
+                <Form className="w-50 m-auto d-flex justify-content-center" onSubmit={handleSearchRecipe}>
                     <Form.Control
                         id={"searchInput"}
                         type="search"
                         placeholder="Hledat"
-                        className="me-2"
+                        className="me-3 p2"
                         aria-label="Search"
                         onChange={(e) => handleSearchDelete(e)}
                     />
-                    <Button variant="outline-success" type="submit">Hledat</Button>
+                    <Button variant="success" type="submit" className="p2 w-25"><i className="bi bi-search"></i> Hledat</Button>
                 </Form>
             </Row>
 
