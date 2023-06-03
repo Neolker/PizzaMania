@@ -110,14 +110,14 @@ module.exports = function (webpackEnv) {
             isEnvDevelopment && require.resolve('style-loader'),
             isEnvProduction && {
                 loader: MiniCssExtractPlugin.loader,
-                // scss is located in `static/scss`, use '../../' to locate index.html folder
+                // css is located in `static/css`, use '../../' to locate index.html folder
                 // in production `paths.publicUrlOrPath` can be a relative path
                 options: paths.publicUrlOrPath.startsWith('.')
                     ? {publicPath: '../../'}
                     : {},
             },
             {
-                loader: require.resolve('scss-loader'),
+                loader: require.resolve('css-loader'),
                 options: cssOptions,
             },
             {
@@ -143,7 +143,7 @@ module.exports = function (webpackEnv) {
                                         stage: 3,
                                     },
                                 ],
-                                // Adds PostCSS Normalize as the reset scss with default options,
+                                // Adds PostCSS Normalize as the reset css with default options,
                                 // so that it honors browserslist config in package.json
                                 // which in turn let's users customize the target behavior as per their needs.
                                 'postcss-normalize',
@@ -462,12 +462,12 @@ module.exports = function (webpackEnv) {
                             },
                         },
                         // "postcss" loader applies autoprefixer to our CSS.
-                        // "scss" loader resolves paths in CSS and adds assets as dependencies.
+                        // "css" loader resolves paths in CSS and adds assets as dependencies.
                         // "style" loader turns CSS into JS modules that inject <style> tags.
                         // In production, we use MiniCSSExtractPlugin to extract that CSS
                         // to a file, but in development "style" loader enables hot editing
                         // of CSS.
-                        // By default we support CSS Modules with the extension .module.scss
+                        // By default we support CSS Modules with the extension .module.css
                         {
                             test: cssRegex,
                             exclude: cssModuleRegex,
@@ -487,7 +487,7 @@ module.exports = function (webpackEnv) {
                             sideEffects: true,
                         },
                         // Adds support for CSS Modules (https://github.com/css-modules/css-modules)
-                        // using the extension .module.scss
+                        // using the extension .module.css
                         {
                             test: cssModuleRegex,
                             use: getStyleLoaders({
@@ -549,7 +549,7 @@ module.exports = function (webpackEnv) {
                         // This loader doesn't use a "test" so it will catch all modules
                         // that fall through the other loaders.
                         {
-                            // Exclude `js` files to keep "scss" loader working as it injects
+                            // Exclude `js` files to keep "css" loader working as it injects
                             // its runtime that would otherwise be processed through "file" loader.
                             // Also exclude `html` and `json` extensions so they get processed
                             // by webpacks internal loaders.
@@ -625,8 +625,8 @@ module.exports = function (webpackEnv) {
             new MiniCssExtractPlugin({
                 // Options similar to the same options in webpackOptions.output
                 // both options are optional
-                filename: 'static/scss/[name].[contenthash:8].scss',
-                chunkFilename: 'static/scss/[name].[contenthash:8].chunk.scss',
+                filename: 'static/css/[name].[contenthash:8].css',
+                chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
             }),
             // Generate an asset manifest file with the following content:
             // - "files" key: Mapping of all asset filenames to their corresponding
