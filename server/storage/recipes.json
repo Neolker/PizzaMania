@@ -32,26 +32,6 @@
     ]
   },
   {
-    "id": "REC-63c5eb4c",
-    "name": "Pizza TEST",
-    "description": "Klasická pizza",
-    "procedure": "Předehřejte troubu na 220 °C...",
-    "ingredients": [
-      {
-        "id": "ING-239e0305",
-        "amount": 5
-      },
-      {
-        "id": "ING-7c09dfa1",
-        "amount": 15
-      },
-      {
-        "id": "ING-6ff59e25",
-        "amount": 10
-      }
-    ]
-  },
-  {
     "id": "REC-979091fe",
     "name": "Pizza Hawaii Best",
     "description": "Klasická pizza v Itálii :D",
@@ -188,6 +168,22 @@
       {
         "id": "ING-632b2f5f",
         "amount": 30
+      }
+    ]
+  },
+  {
+    "id": "REC-d7d20cb4",
+    "name": "test",
+    "description": "res",
+    "procedure": "test",
+    "ingredients": [
+      {
+        "id": "ING-6ff59e25",
+        "amount": 5
+      },
+      {
+        "id": "ING-7c09dfa1",
+        "amount": 552
       }
     ]
   }

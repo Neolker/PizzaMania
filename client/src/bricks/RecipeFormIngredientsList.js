@@ -54,7 +54,7 @@ export default function RecipeFormIngredientsList({formData, setFormData, setFie
 
     const addIngredient = () => {
         let newDataForm = formData;
-        newDataForm.ingredients = [...formData.ingredients, { id: "", amount: 0 }];
+        newDataForm.ingredients = [...formData.ingredients, {id: "", amount: 0}];
         setFormData(newDataForm);
 
         setFormDataIngredients(newDataForm.ingredients);
@@ -72,7 +72,6 @@ export default function RecipeFormIngredientsList({formData, setFormData, setFie
     const handleClose = () => {
         setFormDataIngredients(formData.ingredients)
     };
-
 
 
     return (

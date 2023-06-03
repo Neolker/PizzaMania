@@ -1,7 +1,7 @@
 import Icon from '@mdi/react';
 import {mdiLoading} from '@mdi/js';
 import {useEffect, useState} from "react";
-import {Button, Col, Form, Modal, Row} from "react-bootstrap";
+import {Button, Form, Modal} from "react-bootstrap";
 import RecipeFormIngredientsList from "./RecipeFormIngredientsList";
 
 export default function RecipeForm({recipe, show, setAddRecipeShow: setAddRecipeShow, onComplete}) {
@@ -35,24 +35,20 @@ export default function RecipeForm({recipe, show, setAddRecipeShow: setAddRecipe
     }, [recipe]);
 
 
-
-
-
     const handleClose = () => {
         setAddRecipeShow({state: false});
         setFormData(defaultForm);
         setValidated(false)
     };
 
-    const setField = (e, index= undefined) => {
-        if  (index >= 0) {
+    const setField = (e, index = undefined) => {
+        if (index >= 0) {
             return setFormData((formData) => {
                 const newData = {...formData};
                 newData.ingredients[index][e.target.name] = e.target.value;
                 return newData;
             });
-        }
-        else {
+        } else {
             return setFormData((formData) => {
                 const newData = {...formData};
                 newData[e.target.name] = e.target.value;
