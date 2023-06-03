@@ -110,7 +110,7 @@ export default function RecipeFormIngredientsList({formData, setFormData, setFie
                             name="amount"
                             defaultValue={ingredient.amount}
                             onChange={(e) => setField(e, index)}
-                            min={0}
+                            min={1}
                             required
 
                         />
