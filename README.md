@@ -4,7 +4,7 @@
 - [Projektový portál](https://uuapp.plus4u.net/uu-dockit-maing02/4e68298f1658473e9bf5692272883290/document?documentId=63e670ee46a3400036cf3231) workshopu, hodnocení, harmonogramu a týmů.
   - [Business Request](https://uuapp.plus4u.net/uu-bookkit-maing01/a994a2a988ee43d6ae7dcabf0d5b9f43/book/page?code=userStories) kniha (User Stories, Vize, atd.)
   - [Business Model](https://uuapp.plus4u.net/uu-bookkit-maing01/6a1fdf0c62714fd6ac143a8844f7495f/book/page?code=home) kniha (Actors, Use Cases, atd.)
-  - [Application Model](https://uuapp.plus4u.net/uu-bookkit-maing01/d1b6a9636f904eca90ce86bb5258495d/book/page?code=home) kniha (TODO)
+  - [Application Model](https://uuapp.plus4u.net/uu-bookkit-maing01/d1b6a9636f904eca90ce86bb5258495d/book/page?code=home) kniha (Route, Schema, atd.)
 - [Stránka předmětu](https://unicornuniversity.net/cs/cloud-application-architecture) s materiály (učebnice, videa, příklady, atd.)
   - [Práce s Git](https://uuapp.plus4u.net/uu-bookkit-maing01/92f4b54768304fd8a1088fadab560d53/book/page?code=welcome) - učebnice
   - [Server Side JS](https://uuapp.plus4u.net/uu-bookkit-maing01/37bcb632a07543e58625add6221ffafd/book/page?code=home) - učebnice
