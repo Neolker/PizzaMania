@@ -106,12 +106,10 @@ function Home() {
         event.preventDefault();
 
         setSearchBy(event.target["searchInput"].value.toLowerCase());
-        console.log("searchBegin")
     }
 
     function handleSearchDelete(event) {
         if (!event.target.value) setSearchBy("");
-        console.log("searchClose")
     }
 
     function chunkArray(arr, size) {
@@ -232,7 +230,6 @@ function Home() {
                     />
                     <Button variant="outline-success" type="submit">Hledat</Button>
                 </Form>
-
             </Row>
 
 
