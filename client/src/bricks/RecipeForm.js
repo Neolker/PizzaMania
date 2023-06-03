@@ -2,54 +2,62 @@ import Icon from '@mdi/react';
 import {mdiLoading} from '@mdi/js';
 import {useEffect, useState} from "react";
 import {Button, Col, Form, Modal, Row} from "react-bootstrap";
+import RecipeFormIngredientsList from "./RecipeFormIngredientsList";
 
-export default function RecipeForm({recipe, show, setAddGradeShow, onComplete}) {
+export default function RecipeForm({recipe, show, setAddGradeShow: setAddRecipeShow, onComplete}) {
     const defaultForm = {
         id: "",
         name: "",
         description: "",
         procedure: "",
-        ingredients: {
-            name: "Cesto",
-            amount: 0,
-            unit: "g"
-        },
+        ingredients: [
+            {
+                id: "",
+                amount: 0
+            }
+
+        ],
     };
     const [validated, setValidated] = useState(false);
     const [formData, setFormData] = useState(defaultForm);
-    const [studentAddGradeCall, setStudentAddGradeCall] = useState({
+    const [studentAddGradeCall, setAddRecipeCall] = useState({
         state: 'inactive'
     });
 
+
     useEffect(() => {
         if (recipe) {
-            setFormData({
-                id: recipe.id,
-                name: recipe.name,
-                description: recipe.description,
-                procedure: recipe.procedure,
-                ingredients: {
-                    name: recipe.ingredients[0].name,
-                    amount: recipe.ingredients[0].amount,
-                    unit: recipe.ingredients[0].unit
-                },
-            });
+            setFormData(recipe);
         } else {
             setFormData(defaultForm);
         }
+
     }, [recipe]);
 
+
+
+
+
     const handleClose = () => {
-        setAddGradeShow({state: false});
+        setAddRecipeShow({state: false});
         setFormData(defaultForm);
     };
 
-    const setField = (name, val) => {
-        return setFormData((formData) => {
-            const newData = {...formData};
-            newData[name] = val;
-            return newData;
-        });
+    const setField = (e, index= undefined) => {
+        if  (index >= 0) {
+            return setFormData((formData) => {
+                const newData = {...formData};
+                newData.ingredients[index][e.target.name] = e.target.value;
+                return newData;
+            });
+        }
+        else {
+            return setFormData((formData) => {
+                const newData = {...formData};
+                newData[e.target.name] = e.target.value;
+                return newData;
+            });
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -62,13 +70,14 @@ export default function RecipeForm({recipe, show, setAddGradeShow, onComplete}) 
             ...formData
         };
 
+        console.log(payload)
         if (!form.checkValidity()) {
             setValidated(true);
             return;
         }
 
-        setStudentAddGradeCall({state: 'pending'});
-        const res = await fetch(`http://localhost:3000/recipe/${recipe ? 'update' : 'create'}`, {
+        setAddRecipeCall({state: 'pending'});
+        const res = await fetch(`http://localhost:3000/recipe/super-${recipe ? 'update' : 'create'}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -76,12 +85,13 @@ export default function RecipeForm({recipe, show, setAddGradeShow, onComplete}) 
             body: JSON.stringify(payload)
         });
 
+
         const data = await res.json();
 
         if (res.status >= 400) {
-            setStudentAddGradeCall({state: "error", error: data});
+            setAddRecipeCall({state: "error", error: data});
         } else {
-            setStudentAddGradeCall({state: "success", data});
+            setAddRecipeCall({state: "success", data});
 
             if (typeof onComplete === 'function') {
                 onComplete(data);
@@ -101,6 +111,7 @@ export default function RecipeForm({recipe, show, setAddGradeShow, onComplete}) 
                     <Modal.Body>
                         <Form.Control
                             type="text"
+                            name="id"
                             value={formData.id}
                             aria-label="Disabled input example"
                             disabled
@@ -110,9 +121,10 @@ export default function RecipeForm({recipe, show, setAddGradeShow, onComplete}) 
                             <Form.Label>Název</Form.Label>
                             <Form.Control
                                 type="text"
+                                name="name"
                                 value={formData.name}
-                                onChange={(e) => setField("name", e.target.value)}
-                                maxLength={20}
+                                onChange={(e) => setField(e)}
+                                minLength={2}
                                 required
                             />
                         </Form.Group>
@@ -120,10 +132,12 @@ export default function RecipeForm({recipe, show, setAddGradeShow, onComplete}) 
                             <Form.Label>Popis</Form.Label>
                             <Form.Control
                                 as="textarea"
+                                name="description"
                                 rows={2}
                                 value={formData.description}
-                                onChange={(e) => setField("description", e.target.value)}
-                                maxLength={20}
+                                onChange={(e) => setField(e)}
+                                minLength={2}
+                                maxLength={160}
                                 required
                             />
                             <Form.Control.Feedback type="invalid">
@@ -135,10 +149,11 @@ export default function RecipeForm({recipe, show, setAddGradeShow, onComplete}) 
                             <Form.Label>Postup</Form.Label>
                             <Form.Control
                                 as="textarea"
+                                name="procedure"
                                 rows={5}
                                 value={formData.procedure}
-                                onChange={(e) => setField("procedure", e.target.value)}
-                                maxLength={20}
+                                onChange={(e) => setField(e)}
+                                minLength={2}
                                 required
                             />
                             <Form.Control.Feedback type="invalid">
@@ -146,54 +161,10 @@ export default function RecipeForm({recipe, show, setAddGradeShow, onComplete}) 
                             </Form.Control.Feedback>
                         </Form.Group>
 
-                        <Form.Label>Ingredience</Form.Label>
-                        <Row>
+                        <RecipeFormIngredientsList formData={formData} setFormData={setFormData} setField={setField}>
 
-                            <Form.Group as={Col} className="mb-3">
-                                <Form.Label>Název</Form.Label>
-                                <Form.Select
-                                    value={formData.ingredients.name}
-                                    onChange={(e) => setField("name", Number(e.target.value))}
-                                    required
-                                >
-                                    <option value="" disabled>
-                                        Váha známky
-                                    </option>
-                                    <option value={'Syr'}>Syr</option>
-                                    <option value={'Cesto'}>Cesto</option>
-                                    <option value={'Kukurice'}>Kukurice</option>
-                                </Form.Select>
-                            </Form.Group>
+                        </RecipeFormIngredientsList>
 
-                            <Form.Group as={Col} className="mb-3">
-                                <Form.Label>Číslo</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    value={formData.ingredients.amount}
-                                    onChange={(e) => setField("amount", parseInt(e.target.value))}
-                                    min={3}
-                                    required
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    Zadejte známku 1-5
-                                </Form.Control.Feedback>
-                            </Form.Group>
-
-
-                            <Form.Group as={Col} className="mb-3">
-                                <Form.Label>Jednotka</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    value={formData.ingredients.unit}
-                                    onChange={(e) => setField("unit", e.target.value)}
-                                    required
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    Vyberte platný datum
-                                </Form.Control.Feedback>
-                            </Form.Group>
-
-                        </Row>
                     </Modal.Body>
                     <Modal.Footer>
                         <div className="d-flex flex-row justify-content-between align-items-center w-100">
