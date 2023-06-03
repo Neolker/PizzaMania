@@ -41,6 +41,7 @@ export default function RecipeForm({recipe, show, setAddRecipeShow: setAddRecipe
     const handleClose = () => {
         setAddRecipeShow({state: false});
         setFormData(defaultForm);
+        setValidated(false)
     };
 
     const setField = (e, index= undefined) => {
