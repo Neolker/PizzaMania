@@ -217,7 +217,7 @@ function Home() {
 
         <Container>
 
-            <Row className="w-25 m-auto">
+            <Row className="w-50 m-auto">
                 <Form className="d-flex" onSubmit={handleSearchRecipe}>
                     <Form.Control
                         id={"searchInput"}
