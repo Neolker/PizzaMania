@@ -137,6 +137,7 @@ export default function RecipeFormIngredientsList({formData, setFormData, setFie
                     </Form.Group>
 
                     <Form.Group as={Col} className="mb-3">
+                        <Form.Label>Odstranit</Form.Label>
                         <Button variant="danger" onClick={() => removeIngredient(index)}>Odstranit</Button>
                     </Form.Group>
 
