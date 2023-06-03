@@ -90,6 +90,7 @@ export default function RecipeFormIngredientsList({formData, setFormData, setFie
                             value={ingredient.id}
                             onChange={(e) => handleChangeIngredient(e, index)}
                             minLength={2}
+                            maxLength={64}
                             required
                         >
                             {listIngredientsCall.state === "success" &&
