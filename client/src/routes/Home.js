@@ -6,8 +6,6 @@ import {mdiAlertOctagonOutline} from "@mdi/js";
 import Container from "react-bootstrap/Container";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Placeholder from 'react-bootstrap/Placeholder';
-import Stack from 'react-bootstrap/Stack';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import RecipeDelete from "../bricks/RecipeDelete";
@@ -16,6 +14,7 @@ import IngredientForm from "../bricks/IngredientForm"
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Form from "react-bootstrap/Form";
 import placeholder from "../pizza_placeholder.png";
+import Placeholder from "react-bootstrap/Placeholder";
 
 
 function Home() {
@@ -120,63 +119,65 @@ function Home() {
         return groupedArray;
     }
 
+    function getRecipePlaceholder(number) {
+        Array(number).map((number) =>
+            <Card style={{width: '18rem'}}>
+                <Placeholder as={Card.Image} animation="glow">
+                    <Placeholder className="w-100" style={{height: '135px'}}/>
+                </Placeholder> <Card.Body>
+                <Placeholder as={Card.Title} animation="glow">
+                    <Placeholder xs={6}/>
+                </Placeholder>
+                <Placeholder as={Card.Text} animation="glow">
+                    <Placeholder xs={7}/> <Placeholder xs={4}/> <Placeholder xs={4}/>{' '}
+                    <Placeholder xs={6}/> <Placeholder xs={8}/>
+                </Placeholder>
+                <Placeholder.Button variant="primary" xs={6}/>
+            </Card.Body>
+            </Card>
+        )
+    }
+
 
     function getRecipeList() {
         switch (listRecipeCall.state) {
             case "pending":
-                return (<Stack direction="horizontal" gap={3}>
-                    <Card style={{width: '18rem'}}>
-                        <Placeholder as={Card.Image} animation="glow">
-                            <Placeholder className="w-100" style={{height: '135px'}}/>
-                        </Placeholder> <Card.Body>
-                        <Placeholder as={Card.Title} animation="glow">
-                            <Placeholder xs={6}/>
-                        </Placeholder>
-                        <Placeholder as={Card.Text} animation="glow">
-                            <Placeholder xs={7}/> <Placeholder xs={4}/> <Placeholder xs={4}/>{' '}
-                            <Placeholder xs={6}/> <Placeholder xs={8}/>
-                        </Placeholder>
-                        <Placeholder.Button variant="primary" xs={6}/>
-                    </Card.Body>
-                    </Card>
-                    <Card style={{width: '18rem'}}>
-                        <Placeholder as={Card.Image} animation="glow">
-                            <Placeholder className="w-100" style={{height: '135px'}}/>
-                        </Placeholder>
-                        <Card.Body>
-                            <Placeholder as={Card.Title} animation="glow">
-                                <Placeholder xs={6}/>
-                            </Placeholder>
-                            <Placeholder as={Card.Text} animation="glow">
-                                <Placeholder xs={7}/> <Placeholder xs={4}/> <Placeholder xs={4}/>{' '}
-                                <Placeholder xs={6}/> <Placeholder xs={8}/>
-                            </Placeholder>
-                            <Placeholder.Button variant="primary" xs={6}/>
-                        </Card.Body>
-                    </Card>
-                    <Card style={{width: '18rem'}}>
-                        <Placeholder as={Card.Image} animation="glow">
-                            <Placeholder className="w-100" style={{height: '135px'}}/>
-                        </Placeholder>
-                        <Card.Body>
-                            <Placeholder as={Card.Title} animation="glow">
-                                <Placeholder xs={6}/>
-                            </Placeholder>
-                            <Placeholder as={Card.Text} animation="glow">
-                                <Placeholder xs={7}/> <Placeholder xs={4}/> <Placeholder xs={4}/>{' '}
-                                <Placeholder xs={6}/> <Placeholder xs={8}/>
-                            </Placeholder>
-                            <Placeholder.Button variant="primary" xs={6}/>
-                        </Card.Body>
-                    </Card>
-                </Stack>);
-            case "success":
+                return (
+                    [...Array(5)].map((e, i) =>
+                        <Row className='justify-content-sm-start'>
+                            {
+                                [...Array(4)].map((e, i) =>
+                                    <Col className='text-center mt-5 col-sm-3'>
+                                        <Card style={{width: '18rem', margin: 'auto'}}>
+                                            <Placeholder as={Card.Image} animation="glow">
+                                                <Placeholder className="w-100 rounded-top" style={{height: '135px'}}/>
+                                            </Placeholder> <Card.Body>
+                                            <Placeholder as={Card.Title} animation="glow">
+                                                <Placeholder xs={6}/>
+                                            </Placeholder>
+                                            <Placeholder as={Card.Text} animation="glow">
+                                                <Placeholder xs={7}/> <Placeholder xs={4}/>
+
+                                            </Placeholder>
+                                            <Placeholder.Button variant="primary" xs={4}/>
+                                        </Card.Body>
+                                        </Card>
+                                    </Col>
+                                )
+                            }
+                        </Row>
+                    )
+                )
+
+            case
+            "success"
+            :
                 return (
                     chunkArray(filteredData, 4).map((card, index) =>
-                        <Row className='justify-content-md-center'>
+                        <Row className='justify-content-sm-start'>
                             {card.map((recipe) =>
-                                <Col className='text-center mt-5'>
-                                    <Card style={{width: '18rem', margin: 'auto'}} >
+                                <Col className='text-center mt-5 col-sm-3'>
+                                    <Card style={{width: '18rem', margin: 'auto'}}>
                                         <Card.Img variant="top" src={placeholder}/>
                                         <Card.Body>
                                             <Card.Title>
@@ -192,7 +193,8 @@ function Home() {
                                             <ButtonGroup className='ms-2'>
 
                                                 {(isEditor() || isAdmin()) && <Button variant="secondary"
-                                                                                      onClick={() => handleAddRecipeShow(recipe)}><i className="bi bi-pen"></i> Upravit</Button>}
+                                                                                      onClick={() => handleAddRecipeShow(recipe)}><i
+                                                    className="bi bi-pen"></i> Upravit</Button>}
                                                 {(isAdmin()) && <RecipeDelete recipe={recipe}
                                                                               onDelete={handleRecipeDelete}></RecipeDelete>}
                                             </ButtonGroup>
@@ -204,7 +206,9 @@ function Home() {
                         </Row>
                     )
                 )
-            case "error":
+            case
+            "error"
+            :
                 return (<div>
                     <Icon size={1} path={mdiAlertOctagonOutline}/> Error
                 </div>);
@@ -216,7 +220,7 @@ function Home() {
 
     return (
 
-        <Container>
+        <Container className="pb-5">
 
             <Row className="m-auto">
                 <Form className="w-50 m-auto d-flex justify-content-center" onSubmit={handleSearchRecipe}>
@@ -228,7 +232,8 @@ function Home() {
                         aria-label="Search"
                         onChange={(e) => handleSearchDelete(e)}
                     />
-                    <Button variant="success" type="submit" className="p2 w-25"><i className="bi bi-search"></i> Hledat</Button>
+                    <Button variant="success" type="submit" className="p2 w-25"><i
+                        className="bi bi-search"></i> Hledat</Button>
                 </Form>
             </Row>
 
