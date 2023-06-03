@@ -69,6 +69,10 @@ export default function RecipeFormIngredientsList({formData, setFormData, setFie
         setFormDataIngredients([...newDataForm.ingredients]);
     }
 
+    const handleClose = () => {
+        setFormDataIngredients(formData.ingredients)
+    };
+
 
 
     return (
@@ -78,7 +82,7 @@ export default function RecipeFormIngredientsList({formData, setFormData, setFie
             {formDataIngredients.map((ingredient, index) =>
 
 
-                <Row accessKey={index}>
+                <Row accessKey={index} onHide={handleClose}>
                     <Form.Group as={Col} className="mb-3">
                         <Form.Label>Název</Form.Label>
                         <Form.Select
@@ -106,7 +110,8 @@ export default function RecipeFormIngredientsList({formData, setFormData, setFie
                             name="amount"
                             defaultValue={ingredient.amount}
                             onChange={(e) => setField(e, index)}
-                            minLength={1}
+                            min={0}
+                            required
 
                         />
                         <Form.Control.Feedback type="invalid">

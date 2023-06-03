@@ -12,6 +12,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import RecipeDelete from "../bricks/RecipeDelete";
 import RecipeForm from "../bricks/RecipeForm";
+import IngredientForm from "../bricks/IngredientForm"
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 function Home() {
@@ -20,6 +21,10 @@ function Home() {
         state: "pending",
     });
     const [addRecipeShow, setAddRecipeShow] = useState({
+        state: false
+    });
+
+    const [addIngredientShow, setAddIngredientShow] = useState({
         state: false
     });
 
@@ -57,6 +62,11 @@ function Home() {
 
 
     const handleAddRecipeShow = (data) => setAddRecipeShow({state: true, data});
+    const handleAddIngredientShow = (data) => setAddIngredientShow({state: true, data});
+
+    function handleIngredientAdded(ingredient) {
+
+    }
 
     const handleRecipeAdded = (recipe) => {
         if (listRecipeCall.state === "success") {
@@ -133,12 +143,12 @@ function Home() {
                 </Stack>);
             case "success":
                 return (
-                    chunkArray(listRecipeCall.data, 4).map( card =>
-                        <Row className='justify-content-md-center'>
+                    chunkArray(listRecipeCall.data, 4).map( (card, index) =>
+                        <Row className='justify-content-md-center' accessKey={index}>
                             {card.map((recipe) =>
-                                <Col className='text-center mt-5'>
-                                    <Card style={{width: '18rem', margin: 'auto'}}>
-                                        <Placeholder className="rounded-top" as={Card.Image}>
+                                <Col className='text-center mt-5'   >
+                                    <Card style={{width: '18rem', margin: 'auto'}} accessKey={recipe.id}>
+                                        <Placeholder className="rounded-top" as={Card.Image}  >
                                             <Placeholder className="w-100 rounded-top" style={{height: '135px'}}/>
                                         </Placeholder>
                                         <Card.Body>
@@ -176,6 +186,8 @@ function Home() {
         }
     }
 
+
+
     return (
         <Container>
             {getRecipeList()}
@@ -183,15 +195,21 @@ function Home() {
             {(isEditor() || isAdmin()) &&
                 <ButtonGroup vertical className='position-fixed bottom-0 end-0 mb-5 me-4'>
                     <Button variant="success" onClick={() => handleAddRecipeShow()}>Přidat recept</Button>
-                    <Button variant="danger">Přidat ingredienci</Button>
+                    <Button variant="danger" onClick={() => handleAddIngredientShow()}>Přidat ingredienci</Button>
                 </ButtonGroup>}
 
 
             <RecipeForm
                 show={addRecipeShow.state}
                 recipe={addRecipeShow.data}
-                setAddGradeShow={setAddRecipeShow}
+                setAddRecipeShow={setAddRecipeShow}
                 onComplete={(recipe) => handleRecipeAdded(recipe)}
+            />
+
+            <IngredientForm
+                show={addIngredientShow.state}
+                setAddIngredientShow={setAddIngredientShow}
+                onComplete={(ingredient) => handleIngredientAdded(ingredient) }
             />
         </Container>);
 }

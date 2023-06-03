@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import {Button, Col, Form, Modal, Row} from "react-bootstrap";
 import RecipeFormIngredientsList from "./RecipeFormIngredientsList";
 
-export default function RecipeForm({recipe, show, setAddGradeShow: setAddRecipeShow, onComplete}) {
+export default function RecipeForm({recipe, show, setAddRecipeShow: setAddRecipeShow, onComplete}) {
     const defaultForm = {
         id: "",
         name: "",
@@ -70,7 +70,6 @@ export default function RecipeForm({recipe, show, setAddGradeShow: setAddRecipeS
             ...formData
         };
 
-        console.log(payload)
         if (!form.checkValidity()) {
             setValidated(true);
             return;
@@ -125,8 +124,12 @@ export default function RecipeForm({recipe, show, setAddGradeShow: setAddRecipeS
                                 value={formData.name}
                                 onChange={(e) => setField(e)}
                                 minLength={2}
+                                maxLength={64}
                                 required
                             />
+                            <Form.Control.Feedback type="invalid">
+                                Zadejte popis s minimální délkou 2 znaků a maximální délkou 64 znaků
+                            </Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label>Popis</Form.Label>
@@ -141,7 +144,7 @@ export default function RecipeForm({recipe, show, setAddGradeShow: setAddRecipeS
                                 required
                             />
                             <Form.Control.Feedback type="invalid">
-                                Zadejte popis s maximální délkou 20 znaků
+                                Zadejte popis s minimální délkou 2 znaků a maximální délkou 160 znaků
                             </Form.Control.Feedback>
                         </Form.Group>
 
@@ -157,7 +160,7 @@ export default function RecipeForm({recipe, show, setAddGradeShow: setAddRecipeS
                                 required
                             />
                             <Form.Control.Feedback type="invalid">
-                                Zadejte popis s maximální délkou 20 znaků
+                                Zadejte popis s minimální délkou 2 znaků
                             </Form.Control.Feedback>
                         </Form.Group>
 
