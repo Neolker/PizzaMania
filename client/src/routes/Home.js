@@ -157,7 +157,7 @@ function Home() {
                     chunkArray(filteredData, 4).map((card, index) =>
                         <Row className='justify-content-sm-start' key={index}>
                             {card.map((recipe, innerIndex) =>
-                                <Col className='text-center mt-5 col-sm-3' key={innerIndex}>
+                                <Col className='text-center mt-5 col-xxl-3' key={innerIndex}>
                                     <Card style={{width: '18rem', margin: 'auto'}}>
                                         <Card.Img variant="top" src={placeholder}/>
                                         <Card.Body>
