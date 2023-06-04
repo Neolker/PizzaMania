@@ -1,9 +1,12 @@
 import Icon from '@mdi/react';
 import {mdiLoading} from '@mdi/js';
 import {useEffect, useState} from "react";
-import {Button, Col, Form, Modal, Row} from "react-bootstrap";
+import {Button, Col, Form, Modal, Row, Table} from "react-bootstrap";
+import Card from "react-bootstrap/Card";
+import Placeholder from "react-bootstrap/Placeholder";
+import Container from "react-bootstrap/Container";
 
-export default function IngredientForm({recipe, show, setAddIngredientShow: setAddIngredientShow, onComplete}) {
+export default function IngredientForm({show, setAddIngredientShow: setAddIngredientShow, onComplete}) {
     const defaultForm = {
         id: "",
         amount: 0
@@ -11,19 +14,32 @@ export default function IngredientForm({recipe, show, setAddIngredientShow: setA
 
     const [validated, setValidated] = useState(false);
     const [formData, setFormData] = useState(defaultForm);
-    const [studentAddGradeCall, setAddRecipeCall] = useState({
+    const [addIngredientCall, setAddIngredientCall] = useState({
         state: 'inactive'
     });
 
+    const [listIngredientsCall, setListIngredientsCall] = useState({
+        state: "pending",
+    });
 
     useEffect(() => {
-        if (recipe) {
-            setFormData(recipe);
-        } else {
-            setFormData(defaultForm);
-        }
+        setListIngredientsCall({state: "pending"});
 
-    }, [recipe]);
+
+        fetch(`http://localhost:3000/ingredient/list`, {
+            method: "GET",
+        }).then(async (response) => {
+            const responseJson = await response.json();
+            if (response.status >= 400) {
+                setListIngredientsCall({state: "error", error: responseJson});
+            } else {
+                setListIngredientsCall({state: "success", data: responseJson});
+
+            }
+        });
+
+
+    }, [addIngredientCall]);
 
 
     const handleClose = () => {
@@ -64,8 +80,8 @@ export default function IngredientForm({recipe, show, setAddIngredientShow: setA
             return;
         }
 
-        setAddRecipeCall({state: 'pending'});
-        const res = await fetch(`http://localhost:3000/ingredient/${recipe ? 'update' : 'create'}`, {
+        setAddIngredientCall({state: 'pending'});
+        const res = await fetch(`http://localhost:3000/ingredient/create`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -77,9 +93,9 @@ export default function IngredientForm({recipe, show, setAddIngredientShow: setA
         const data = await res.json();
 
         if (res.status >= 400) {
-            setAddRecipeCall({state: "error", error: data});
+            setAddIngredientCall({state: "error", error: data});
         } else {
-            setAddRecipeCall({state: "success", data});
+            setAddIngredientCall({state: "success", data});
 
             if (typeof onComplete === 'function') {
                 onComplete(data);
@@ -89,14 +105,72 @@ export default function IngredientForm({recipe, show, setAddIngredientShow: setA
         }
     };
 
+    function getIngredientsList() {
+        switch (listIngredientsCall.state) {
+            case "pending":
+                return (
+                    <Table striped>
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Název</th>
+                            <th>Jednotka</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {
+                            [...Array(6)].map((e, innerIndex) =>
+                                <tr>
+                                    <td><Placeholder as={Card.Text} animation="glow" className="fs-3">
+                                        <Placeholder lg={6}/>{' '}
+                                    </Placeholder></td>
+                                    <td><Placeholder as={Card.Text} animation="glow" className="fs-3">
+                                        <Placeholder lg={6}/>{' '}
+                                    </Placeholder></td>
+                                    <td><Placeholder as={Card.Text} animation="glow" className="fs-3">
+                                        <Placeholder lg={6}/>{' '}
+                                    </Placeholder></td>
+                                </tr>
+
+                            )
+                        }
+                        </tbody>
+                    </Table>
+                )
+
+            case "success":
+                return (
+                    <Table striped>
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Název</th>
+                            <th>Jednotka</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {listIngredientsCall.state === "success" && listIngredientsCall.data.map((ingredient, index) =>
+                            <tr key={index}>
+                                <td>{index + 1}</td>
+                                <td>{ingredient.name}</td>
+                                <td>{ingredient.unit}</td>
+                            </tr>
+                        )}
+                        </tbody>
+                    </Table>)
+
+        }
+    }
+
     return (
         <>
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose} centered>
                 <Form noValidate validated={validated} onSubmit={(e) => handleSubmit(e)}>
                     <Modal.Header closeButton>
-                        <Modal.Title>{recipe ? 'Upravit' : 'Přidat'} recept</Modal.Title>
+                        <Modal.Title>Přidat recept</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
+                        {getIngredientsList()}
                         <Row>
                             <Form.Control
                                 type="text"
@@ -116,7 +190,7 @@ export default function IngredientForm({recipe, show, setAddIngredientShow: setA
                                     minLength={2}
                                     required
                                 />
-                                <Form.Control.Feedback type="invalid">
+                                <Form.Control.Feedback type="invalid" className="fw-bold">
                                     Zadejte název s minimální délkou 2 znaků a maximální délkou 160 znaků
                                 </Form.Control.Feedback>
                             </Form.Group>
@@ -130,7 +204,7 @@ export default function IngredientForm({recipe, show, setAddIngredientShow: setA
                                     minLength={1}
                                     required
                                 />
-                                <Form.Control.Feedback type="invalid">
+                                <Form.Control.Feedback type="invalid" className="fw-bold">
                                     Zadejte jednotku s minimální délkou 1 znak
                                 </Form.Control.Feedback>
                             </Form.Group>
@@ -139,20 +213,21 @@ export default function IngredientForm({recipe, show, setAddIngredientShow: setA
                     <Modal.Footer>
                         <div className="d-flex flex-row justify-content-between align-items-center w-100">
                             <div>
-                                {studentAddGradeCall.state === 'error' &&
-                                    <div className="text-danger">Error: {studentAddGradeCall.error.errorMessage}</div>
+                                {addIngredientCall.state === 'error' &&
+                                    <div
+                                        className="text-danger">Error: {addIngredientCall.error.errorMessage}</div>
                                 }
                             </div>
                             <div className="d-flex flex-row gap-2">
-                                <Button variant="secondary" onClick={handleClose}>
+                                <Button variant="dark" onClick={handleClose}>
                                     Zavřít
                                 </Button>
-                                <Button variant="primary" type="submit"
-                                        disabled={studentAddGradeCall.state === 'pending'}>
-                                    {studentAddGradeCall.state === 'pending' ? (
+                                <Button variant="success" type="submit"
+                                        disabled={addIngredientCall.state === 'pending'}>
+                                    {addIngredientCall.state === 'pending' ? (
                                         <Icon size={0.8} path={mdiLoading} spin={true}/>
                                     ) : (
-                                        recipe ? 'Upravit' : 'Přidat'
+                                        "Přidat"
                                     )}
                                 </Button>
                             </div>
