@@ -119,8 +119,8 @@ export default function IngredientForm({show, setAddIngredientShow: setAddIngred
                         </thead>
                         <tbody>
                         {
-                            [...Array(6)].map((e, innerIndex) =>
-                                <tr>
+                            [...Array(6)].map((e, index) =>
+                                <tr key={index}>
                                     <td><Placeholder as={Card.Text} animation="glow" className="fs-3">
                                         <Placeholder lg={6}/>{' '}
                                     </Placeholder></td>
