@@ -26,7 +26,7 @@ export default function RecipeFormIngredientsList({formData, setFormData, setFie
         setFormDataIngredients(formData.ingredients)
 
 
-    }, [formData]);
+    }, []);
 
 
     const handleChangeIngredient = (e, index) => {
@@ -84,7 +84,7 @@ export default function RecipeFormIngredientsList({formData, setFormData, setFie
                     <Col className="col-1 d-flex justify-content-start align-items-center">
                         #{index+1}
                     </Col>
-                    <Form.Group className="col-5">
+                    <Form.Group className="col-5 col-lg-6">
                         <Form.Label>Název</Form.Label>
                         <Form.Select
                             name="id"
@@ -94,6 +94,7 @@ export default function RecipeFormIngredientsList({formData, setFormData, setFie
                             maxLength={64}
                             required
                         >
+                            <option value=""> </option>
                             {listIngredientsCall.state === "success" &&
                                 listIngredientsCall.data.map((allIngredient, index) =>
                                     <option value={allIngredient.id} key={index}>{allIngredient.name}</option>
@@ -104,7 +105,7 @@ export default function RecipeFormIngredientsList({formData, setFormData, setFie
                             Vyberte ingredienci
                         </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group className="col-3">
+                    <Form.Group className=" col-3 col-lg-2 px-2">
                         <Form.Label>Množství</Form.Label>
                         <Form.Control
                             type="number"
@@ -121,7 +122,7 @@ export default function RecipeFormIngredientsList({formData, setFormData, setFie
                     </Form.Group>
 
 
-                    <Form.Group className="col-1 px-0  d-flex justify-content-start align-items-end">
+                    <Form.Group className="col-2 col-lg-2 px-0  d-flex justify-content-start align-items-end">
                         <Form.Label></Form.Label>
                         <Form.Control
                             type="text"
@@ -138,7 +139,7 @@ export default function RecipeFormIngredientsList({formData, setFormData, setFie
                         </Form.Control.Feedback>
                     </Form.Group>
 
-                    <Form.Group className="col-1 d-flex justify-content-start align-items-end">
+                    <Form.Group className="col-1 d-flex justify-content-end align-items-end">
                         <Button variant="danger" onClick={() => removeIngredient(index)}><i className="bi bi-trash-fill"></i></Button>
                     </Form.Group>
 

@@ -114,7 +114,7 @@ export default function RecipeForm({recipe, show, setAddRecipeShow: setAddRecipe
                     </Modal.Header>
                     <Modal.Body >
                         <Row>
-                            <Col>
+                            <div className="col-xl-6">
                                 <Form.Control
                                     type="text"
                                     name="id"
@@ -170,14 +170,14 @@ export default function RecipeForm({recipe, show, setAddRecipeShow: setAddRecipe
                                         Zadejte popis s minimální délkou 2 znaků
                                     </Form.Control.Feedback>
                                 </Form.Group>
-                            </Col>
+                            </div>
 
-                            <Col>
+                            <div className="col-xl-6">
                                 <RecipeFormIngredientsList formData={formData} setFormData={setFormData}
                                                            setField={setField}>
 
                                 </RecipeFormIngredientsList>
-                            </Col>
+                            </div>
                         </Row>
 
                     </Modal.Body>
