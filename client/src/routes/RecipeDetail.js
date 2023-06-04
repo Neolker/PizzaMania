@@ -59,7 +59,7 @@ function RecipeDetail() {
         switch (ingredientsLoadCall.state) {
             case "success":
                 return (
-                    <Container className="d-flex px-0">
+                    <Container className="d-flex justify-content-start  align-items-start px-0">
                         {recipeLoadCall.data.ingredients.map((ingredient, index) => {
                                 const ingredientNameUnit = ingredientsLoadCall.data.filter((allIngredient) => {
                                     return ingredient.id === allIngredient.id
@@ -86,7 +86,7 @@ function RecipeDetail() {
         switch (recipeLoadCall.state) {
             case "pending":
                 return (
-                    <Container className='w-50'>
+                    <Container className='w-75'>
 
                         <Card>
                             <Card.Body>
@@ -123,7 +123,7 @@ function RecipeDetail() {
                 );
             case "success":
                 return (
-                    <Container className="w-50">
+                    <Container className="w-75 mb-3">
                         <Card>
                             {/*<Card.Header>Featured</Card.Header>*/}
                             <Card.Body>

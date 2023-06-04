@@ -6,12 +6,20 @@
     "procedure": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.",
     "ingredients": [
       {
-        "id": "ING-239e0305",
+        "id": "ING-7c09dfa1",
         "amount": 50
       },
       {
-        "id": "ING-7ecadb7b",
+        "id": "ING-c8e71c99",
         "amount": 10
+      },
+      {
+        "id": "ING-736c273f",
+        "amount": 100
+      },
+      {
+        "id": "ING-24678667",
+        "amount": 50
       }
     ]
   },
@@ -22,12 +30,24 @@
     "procedure": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.",
     "ingredients": [
       {
-        "id": "ING-239e0305",
+        "id": "ING-7c09dfa1",
         "amount": 25
       },
       {
-        "id": "ING-6ff59e25",
+        "id": "ING-c8e71c99",
         "amount": 20
+      },
+      {
+        "id": "ING-736c273f",
+        "amount": 100
+      },
+      {
+        "id": "ING-6ff59e25",
+        "amount": 100
+      },
+      {
+        "id": "ING-6153ee49",
+        "amount": 50
       }
     ]
   },
@@ -38,15 +58,19 @@
     "procedure": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.",
     "ingredients": [
       {
-        "id": "ING-239e0305",
+        "id": "ING-7c09dfa1",
         "amount": 5
       },
       {
-        "id": "ING-7c09dfa1",
+        "id": "ING-c8e71c99",
         "amount": 15
       },
       {
-        "id": "ING-6ff59e25",
+        "id": "ING-736c273f",
+        "amount": 10
+      },
+      {
+        "id": "ING-7ecadb7b",
         "amount": 10
       }
     ]
@@ -58,15 +82,23 @@
     "procedure": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.",
     "ingredients": [
       {
-        "id": "ING-239e0305",
+        "id": "ING-7c09dfa1",
         "amount": 5
       },
       {
-        "id": "ING-7ecadb7b",
+        "id": "ING-c8e71c99",
         "amount": 150
       },
       {
+        "id": "ING-736c273f",
+        "amount": 10
+      },
+      {
         "id": "ING-6ff59e25",
+        "amount": 100
+      },
+      {
+        "id": "ING-00778397",
         "amount": 10
       }
     ]
@@ -74,20 +106,24 @@
   {
     "id": "REC-3642f413",
     "name": "Pizza Bacondrom",
-    "description": "Rajčatové sugo, cheddar, mozzarella, slanina, cibule",
+    "description": "Rajčatové sugo, cheddar, mozzarella, slanina",
     "procedure": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.",
     "ingredients": [
       {
-        "id": "ING-239e0305",
+        "id": "ING-7c09dfa1",
         "amount": 5
       },
       {
-        "id": "ING-7ecadb7b",
+        "id": "ING-c8e71c99",
         "amount": 150
       },
       {
-        "id": "ING-6ff59e25",
+        "id": "ING-736c273f",
         "amount": 10
+      },
+      {
+        "id": "ING-00778397",
+        "amount": 5
       }
     ]
   },
@@ -108,6 +144,14 @@
       {
         "id": "ING-6ff59e25",
         "amount": 10
+      },
+      {
+        "id": "ING-1e8f62e4",
+        "amount": 50
+      },
+      {
+        "id": "ING-858740b6",
+        "amount": 20
       }
     ]
   },
@@ -118,16 +162,24 @@
     "procedure": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.",
     "ingredients": [
       {
-        "id": "ING-239e0305",
+        "id": "ING-e2b2e9c3",
         "amount": 5
       },
       {
-        "id": "ING-7ecadb7b",
+        "id": "ING-c8e71c99",
         "amount": 150
       },
       {
-        "id": "ING-6ff59e25",
+        "id": "ING-736c273f",
         "amount": 10
+      },
+      {
+        "id": "ING-239e0305",
+        "amount": 50
+      },
+      {
+        "id": "ING-0bd8b757",
+        "amount": 50
       }
     ]
   },
@@ -138,16 +190,24 @@
     "procedure": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.",
     "ingredients": [
       {
-        "id": "ING-239e0305",
+        "id": "ING-7c09dfa1",
         "amount": 5
       },
       {
-        "id": "ING-7ecadb7b",
+        "id": "ING-c8e71c99",
         "amount": 150
       },
       {
-        "id": "ING-6ff59e25",
+        "id": "ING-736c273f",
         "amount": 10
+      },
+      {
+        "id": "ING-6ff59e25",
+        "amount": 50
+      },
+      {
+        "id": "ING-a468a40a",
+        "amount": 50
       }
     ]
   },
@@ -158,16 +218,28 @@
     "procedure": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.",
     "ingredients": [
       {
-        "id": "ING-e5a942bb",
+        "id": "ING-7c09dfa1",
         "amount": 20
       },
       {
-        "id": "ING-e587bd34",
+        "id": "ING-c8e71c99",
         "amount": 30
       },
       {
-        "id": "ING-632b2f5f",
+        "id": "ING-736c273f",
         "amount": 30
+      },
+      {
+        "id": "ING-6ff59e25",
+        "amount": 35
+      },
+      {
+        "id": "ING-a468a40a",
+        "amount": 50
+      },
+      {
+        "id": "ING-a2e51813",
+        "amount": 20
       }
     ]
   },
@@ -178,12 +250,20 @@
     "procedure": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.",
     "ingredients": [
       {
-        "id": "ING-6ff59e25",
+        "id": "ING-7c09dfa1",
         "amount": 5
       },
       {
-        "id": "ING-7c09dfa1",
+        "id": "ING-c8e71c99",
         "amount": 552
+      },
+      {
+        "id": "ING-736c273f",
+        "amount": 50
+      },
+      {
+        "id": "ING-a626a277",
+        "amount": 150
       }
     ]
   }
