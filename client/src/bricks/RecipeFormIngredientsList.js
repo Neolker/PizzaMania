@@ -101,7 +101,7 @@ export default function RecipeFormIngredientsList({formData, setFormData, setFie
                                 )
                             }
                         </Form.Select>
-                        <Form.Control.Feedback type="invalid">
+                        <Form.Control.Feedback type="invalid" className="fw-bold">
                             Vyberte ingredienci
                         </Form.Control.Feedback>
                     </Form.Group>
@@ -116,7 +116,7 @@ export default function RecipeFormIngredientsList({formData, setFormData, setFie
                             required
 
                         />
-                        <Form.Control.Feedback type="invalid">
+                        <Form.Control.Feedback type="invalid" className="fw-bold">
                             Zadejte množství
                         </Form.Control.Feedback>
                     </Form.Group>
@@ -134,7 +134,7 @@ export default function RecipeFormIngredientsList({formData, setFormData, setFie
                             minLength={1}
                             className="fw-bold"
                         />
-                        <Form.Control.Feedback type="invalid">
+                        <Form.Control.Feedback type="invalid" className="fw-bold">
                             Vyberte platnú jednotku
                         </Form.Control.Feedback>
                     </Form.Group>

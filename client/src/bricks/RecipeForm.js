@@ -134,7 +134,7 @@ export default function RecipeForm({recipe, show, setAddRecipeShow: setAddRecipe
                                         maxLength={64}
                                         required
                                     />
-                                    <Form.Control.Feedback type="invalid">
+                                    <Form.Control.Feedback type="invalid" className="fw-bold">
                                         Zadejte popis s minimální délkou 2 znaků a maximální délkou 64 znaků
                                     </Form.Control.Feedback>
                                 </Form.Group>
@@ -150,7 +150,7 @@ export default function RecipeForm({recipe, show, setAddRecipeShow: setAddRecipe
                                         maxLength={160}
                                         required
                                     />
-                                    <Form.Control.Feedback type="invalid">
+                                    <Form.Control.Feedback type="invalid" className="fw-bold">
                                         Zadejte popis s minimální délkou 2 znaků a maximální délkou 160 znaků
                                     </Form.Control.Feedback>
                                 </Form.Group>
@@ -166,7 +166,7 @@ export default function RecipeForm({recipe, show, setAddRecipeShow: setAddRecipe
                                         minLength={2}
                                         required
                                     />
-                                    <Form.Control.Feedback type="invalid">
+                                    <Form.Control.Feedback type="invalid" className="fw-bold">
                                         Zadejte popis s minimální délkou 2 znaků
                                     </Form.Control.Feedback>
                                 </Form.Group>
