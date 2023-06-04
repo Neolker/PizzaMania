@@ -1,7 +1,7 @@
 import Icon from '@mdi/react';
 import {mdiLoading} from '@mdi/js';
 import {useEffect, useState} from "react";
-import {Button, Form, Modal} from "react-bootstrap";
+import {Button, Col, Form, Row, Modal} from "react-bootstrap";
 import RecipeFormIngredientsList from "./RecipeFormIngredientsList";
 
 export default function RecipeForm({recipe, show, setAddRecipeShow: setAddRecipeShow, onComplete}) {
@@ -11,6 +11,14 @@ export default function RecipeForm({recipe, show, setAddRecipeShow: setAddRecipe
         description: "",
         procedure: "",
         ingredients: [
+            {
+                id: "",
+                amount: 0
+            },
+            {
+                id: "",
+                amount: 0
+            },
             {
                 id: "",
                 amount: 0
@@ -99,71 +107,78 @@ export default function RecipeForm({recipe, show, setAddRecipeShow: setAddRecipe
 
     return (
         <>
-            <Modal show={show} onHide={handleClose}>
-                <Form noValidate validated={validated} onSubmit={(e) => handleSubmit(e)}>
+            <Modal show={show} onHide={handleClose} centered size="xl">
+                <Form  noValidate validated={validated} onSubmit={(e) => handleSubmit(e)}>
                     <Modal.Header closeButton>
-                        <Modal.Title>{recipe ? 'Upravit' : 'Přidat'} recept</Modal.Title>
+                        <Modal.Title >{recipe ? 'Upravit' : 'Přidat'} recept</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>
-                        <Form.Control
-                            type="text"
-                            name="id"
-                            value={formData.id}
-                            aria-label="Disabled input example"
-                            disabled
-                            hidden
-                        />
-                        <Form.Group className="mb-3">
-                            <Form.Label>Název</Form.Label>
-                            <Form.Control
-                                type="text"
-                                name="name"
-                                value={formData.name}
-                                onChange={(e) => setField(e)}
-                                minLength={2}
-                                maxLength={64}
-                                required
-                            />
-                            <Form.Control.Feedback type="invalid">
-                                Zadejte popis s minimální délkou 2 znaků a maximální délkou 64 znaků
-                            </Form.Control.Feedback>
-                        </Form.Group>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Popis</Form.Label>
-                            <Form.Control
-                                as="textarea"
-                                name="description"
-                                rows={2}
-                                value={formData.description}
-                                onChange={(e) => setField(e)}
-                                minLength={2}
-                                maxLength={160}
-                                required
-                            />
-                            <Form.Control.Feedback type="invalid">
-                                Zadejte popis s minimální délkou 2 znaků a maximální délkou 160 znaků
-                            </Form.Control.Feedback>
-                        </Form.Group>
+                    <Modal.Body >
+                        <Row>
+                            <Col>
+                                <Form.Control
+                                    type="text"
+                                    name="id"
+                                    value={formData.id}
+                                    aria-label="Disabled input example"
+                                    disabled
+                                    hidden
+                                />
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Název</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={(e) => setField(e)}
+                                        minLength={2}
+                                        maxLength={64}
+                                        required
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                        Zadejte popis s minimální délkou 2 znaků a maximální délkou 64 znaků
+                                    </Form.Control.Feedback>
+                                </Form.Group>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Popis</Form.Label>
+                                    <Form.Control
+                                        as="textarea"
+                                        name="description"
+                                        rows={2}
+                                        value={formData.description}
+                                        onChange={(e) => setField(e)}
+                                        minLength={2}
+                                        maxLength={160}
+                                        required
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                        Zadejte popis s minimální délkou 2 znaků a maximální délkou 160 znaků
+                                    </Form.Control.Feedback>
+                                </Form.Group>
 
-                        <Form.Group className="mb-3">
-                            <Form.Label>Postup</Form.Label>
-                            <Form.Control
-                                as="textarea"
-                                name="procedure"
-                                rows={5}
-                                value={formData.procedure}
-                                onChange={(e) => setField(e)}
-                                minLength={2}
-                                required
-                            />
-                            <Form.Control.Feedback type="invalid">
-                                Zadejte popis s minimální délkou 2 znaků
-                            </Form.Control.Feedback>
-                        </Form.Group>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Postup</Form.Label>
+                                    <Form.Control
+                                        as="textarea"
+                                        name="procedure"
+                                        rows={5}
+                                        value={formData.procedure}
+                                        onChange={(e) => setField(e)}
+                                        minLength={2}
+                                        required
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                        Zadejte popis s minimální délkou 2 znaků
+                                    </Form.Control.Feedback>
+                                </Form.Group>
+                            </Col>
 
-                        <RecipeFormIngredientsList formData={formData} setFormData={setFormData} setField={setField}>
+                            <Col>
+                                <RecipeFormIngredientsList formData={formData} setFormData={setFormData}
+                                                           setField={setField}>
 
-                        </RecipeFormIngredientsList>
+                                </RecipeFormIngredientsList>
+                            </Col>
+                        </Row>
 
                     </Modal.Body>
                     <Modal.Footer>
@@ -174,10 +189,10 @@ export default function RecipeForm({recipe, show, setAddRecipeShow: setAddRecipe
                                 }
                             </div>
                             <div className="d-flex flex-row gap-2">
-                                <Button variant="secondary" onClick={handleClose}>
+                                <Button variant="dark" onClick={handleClose}>
                                     Zavřít
                                 </Button>
-                                <Button variant="primary" type="submit"
+                                <Button variant="success" type="submit"
                                         disabled={studentAddGradeCall.state === 'pending'}>
                                     {studentAddGradeCall.state === 'pending' ? (
                                         <Icon size={0.8} path={mdiLoading} spin={true}/>
