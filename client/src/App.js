@@ -38,9 +38,9 @@ function App() {
 
                     <Nav className="justify-content-end flex-grow-1 pe-3">
                         <NavDropdown align="end" title={user.fullName ?? 'Nepřihlášen'}>
-                            {users.map(user => {
+                            {users.map((user, index) => {
                                 return (
-                                    <NavDropdown.Item onClick={() => changeUser(user.id)}>
+                                    <NavDropdown.Item onClick={() => changeUser(user.id)} key={index}>
                                         {user.fullName}
                                     </NavDropdown.Item>
                                 )

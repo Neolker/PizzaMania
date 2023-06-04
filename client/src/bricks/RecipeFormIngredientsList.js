@@ -80,8 +80,7 @@ export default function RecipeFormIngredientsList({formData, setFormData, setFie
 
             {formDataIngredients.map((ingredient, index) =>
 
-
-                <Row accessKey={index} onHide={handleClose} className="bg-black rounded py-3 px-2 mx-1 mb-2">
+                <Row key={index}  className="bg-black rounded py-3 px-2 mx-1 mb-2">
                     <Col className="col-1 d-flex justify-content-start align-items-center">
                         #{index+1}
                     </Col>
@@ -97,7 +96,7 @@ export default function RecipeFormIngredientsList({formData, setFormData, setFie
                         >
                             {listIngredientsCall.state === "success" &&
                                 listIngredientsCall.data.map((allIngredient, index) =>
-                                    <option value={allIngredient.id} accessKey={index}>{allIngredient.name}</option>
+                                    <option value={allIngredient.id} key={index}>{allIngredient.name}</option>
                                 )
                             }
                         </Form.Select>

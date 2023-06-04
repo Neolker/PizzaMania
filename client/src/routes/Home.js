@@ -119,35 +119,16 @@ function Home() {
         return groupedArray;
     }
 
-    function getRecipePlaceholder(number) {
-        Array(number).map((number) =>
-            <Card style={{width: '18rem'}}>
-                <Placeholder as={Card.Image} animation="glow">
-                    <Placeholder className="w-100" style={{height: '135px'}}/>
-                </Placeholder> <Card.Body>
-                <Placeholder as={Card.Title} animation="glow">
-                    <Placeholder xs={6}/>
-                </Placeholder>
-                <Placeholder as={Card.Text} animation="glow">
-                    <Placeholder xs={7}/> <Placeholder xs={4}/> <Placeholder xs={4}/>{' '}
-                    <Placeholder xs={6}/> <Placeholder xs={8}/>
-                </Placeholder>
-                <Placeholder.Button variant="primary" xs={6}/>
-            </Card.Body>
-            </Card>
-        )
-    }
-
 
     function getRecipeList() {
         switch (listRecipeCall.state) {
             case "pending":
                 return (
-                    [...Array(5)].map((e, i) =>
-                        <Row className='justify-content-sm-start'>
+                    [...Array(5)].map((e, index) =>
+                        <Row className='justify-content-sm-start' key={index}>
                             {
-                                [...Array(4)].map((e, i) =>
-                                    <Col className='text-center mt-5 col-sm-3'>
+                                [...Array(4)].map((e, innerIndex) =>
+                                    <Col className='text-center mt-5 col-sm-3' key={innerIndex}>
                                         <Card style={{width: '18rem', margin: 'auto'}}>
                                             <Placeholder as={Card.Image} animation="glow">
                                                 <Placeholder className="w-100 rounded-top" style={{height: '135px'}}/>
@@ -174,9 +155,9 @@ function Home() {
             :
                 return (
                     chunkArray(filteredData, 4).map((card, index) =>
-                        <Row className='justify-content-sm-start'>
-                            {card.map((recipe) =>
-                                <Col className='text-center mt-5 col-sm-3'>
+                        <Row className='justify-content-sm-start' key={index}>
+                            {card.map((recipe, innerIndex) =>
+                                <Col className='text-center mt-5 col-sm-3' key={innerIndex}>
                                     <Card style={{width: '18rem', margin: 'auto'}}>
                                         <Card.Img variant="top" src={placeholder}/>
                                         <Card.Body>
