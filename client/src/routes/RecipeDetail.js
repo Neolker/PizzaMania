@@ -41,18 +41,17 @@ function RecipeDetail() {
     }, [recipeId]);
 
     useEffect(() => {
-        if (recipeLoadCall.state === "success") {
-            fetch(`http://localhost:3000/ingredient/list`, {
-                method: "GET",
-            }).then(async (response) => {
-                const responseJson = await response.json();
-                if (response.status >= 400) {
-                    setIngredientsLoadCall({state: "error", error: responseJson});
-                } else {
-                    setIngredientsLoadCall({state: "success", data: responseJson});
-                }
-            });
-        }
+        fetch(`http://localhost:3000/ingredient/list`, {
+            method: "GET",
+        }).then(async (response) => {
+            const responseJson = await response.json();
+            if (response.status >= 400) {
+                setIngredientsLoadCall({state: "error", error: responseJson});
+            } else {
+                setIngredientsLoadCall({state: "success", data: responseJson});
+            }
+        });
+
 
     }, [])
 
