@@ -6,6 +6,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import RecipeDetail from "./routes/RecipeDetail";
 import Home from "./routes/Home";
+import NotFound from "./routes/NotFound";
 import {UserProvider} from "./UserProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -17,6 +18,7 @@ root.render(
                     <Route path="/" element={<App/>}>
                         <Route path="" element={<Home/>}/>
                         <Route path="RecipeDetail" element={<RecipeDetail/>}/>
+                        <Route path="*" element={<NotFound/>} />
                     </Route>
                 </Routes>
             </BrowserRouter>
