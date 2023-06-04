@@ -35,7 +35,7 @@
     "id": "REC-979091fe",
     "name": "Pizza MARSalame",
     "description": "Rajčatové sugo, cheddar, mozzarella, paprikový salám",
-    "procedure": "Předehřejte troubu na 220 °C...",
+    "procedure": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.",
     "ingredients": [
       {
         "id": "ING-239e0305",
@@ -55,7 +55,7 @@
     "id": "REC-2fb0cc21",
     "name": "Pizza Meatroid",
     "description": "Rajčatové sugo, cheddar, mozzarella, šunka, chorizo, slanina",
-    "procedure": "Předehřejte troubu na 220 °C...",
+    "procedure": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.",
     "ingredients": [
       {
         "id": "ING-239e0305",
@@ -75,7 +75,7 @@
     "id": "REC-3642f413",
     "name": "Pizza Bacondrom",
     "description": "Rajčatové sugo, cheddar, mozzarella, slanina, cibule",
-    "procedure": "Předehřejte troubu na 220 °C...",
+    "procedure": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.",
     "ingredients": [
       {
         "id": "ING-239e0305",
@@ -95,7 +95,7 @@
     "id": "REC-387eff45",
     "name": "Pizza BBQ Houston",
     "description": "BBQ omáčka, cheddar, mozzarella, kukuřice, olivy",
-    "procedure": "Předehřejte troubu na 220 °C...",
+    "procedure": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.",
     "ingredients": [
       {
         "id": "ING-239e0305",
@@ -115,7 +115,7 @@
     "id": "REC-df3872b9",
     "name": "Pizza Apollo 4maggi",
     "description": "Smetana, cheddar, mozzarella, parmazán, blue cheese",
-    "procedure": "Předehřejte troubu na 220 °C...",
+    "procedure": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.",
     "ingredients": [
       {
         "id": "ING-239e0305",
@@ -135,7 +135,7 @@
     "id": "REC-4332f685",
     "name": "Pizza AnaNASA",
     "description": "Rajčatové sugo, cheddar, mozzarella, šunka, ananas, petrželka",
-    "procedure": "Předehřejte troubu na 220 °C...",
+    "procedure": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.",
     "ingredients": [
       {
         "id": "ING-239e0305",
@@ -155,7 +155,7 @@
     "id": "REC-a1e6279e",
     "name": "Pizza AnaNASA HOT",
     "description": "Rajčatové sugo, cheddar, mozzarella, šunka, chilli , ananas",
-    "procedure": "Předehřejte troubu na 220 °C...",
+    "procedure": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.",
     "ingredients": [
       {
         "id": "ING-e5a942bb",
@@ -174,8 +174,8 @@
   {
     "id": "REC-d7d20cb4",
     "name": "Pizza Piggynaut",
-    "description": "BBQ, cheddar, mozzarella, trhané vepřové maso, cibule, pažitka",
-    "procedure": "test",
+    "description": "BBQ, cheddar, mozzarella, vepřové maso, cibule, pažitka",
+    "procedure": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.",
     "ingredients": [
       {
         "id": "ING-6ff59e25",
