@@ -94,6 +94,7 @@ export default function RecipeFormIngredientsList({formData, setFormData, setFie
                             maxLength={64}
                             required
                         >
+                            <option value=""> </option>
                             {listIngredientsCall.state === "success" &&
                                 listIngredientsCall.data.map((allIngredient, index) =>
                                     <option value={allIngredient.id} key={index}>{allIngredient.name}</option>
