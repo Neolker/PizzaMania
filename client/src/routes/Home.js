@@ -204,7 +204,7 @@ function Home() {
         <Container className="pb-5">
 
             <Row className="m-auto">
-                <Form className="w-50 m-auto d-flex justify-content-center" onSubmit={handleSearchRecipe}>
+                <Form className="w-75 m-auto d-flex justify-content-center" onSubmit={handleSearchRecipe}>
                     <Form.Control
                         id={"searchInput"}
                         type="search"
