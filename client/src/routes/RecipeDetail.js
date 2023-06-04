@@ -93,6 +93,9 @@ function RecipeDetail() {
                                 <Placeholder as={Card.Title} animation="glow" className="text-center fs-2">
                                     <Placeholder xs={6}/>
                                 </Placeholder>
+                                <Placeholder as={Card.Text} animation="glow" className="fs-3">
+                                    <Placeholder xs={2}/>
+                                </Placeholder>
                                 <Placeholder as={Card.Text} animation="glow">
                                     <Placeholder xs={7}/>
                                 </Placeholder>
@@ -128,6 +131,7 @@ function RecipeDetail() {
                             {/*<Card.Header>Featured</Card.Header>*/}
                             <Card.Body>
                                 <Card.Title className="text-center"><h2>{recipeLoadCall.data.name}</h2></Card.Title>
+                                <h3>Popis</h3>
                                 <Card.Text>
                                     {recipeLoadCall.data.description}
                                 </Card.Text>
