@@ -1,4 +1,5 @@
 # PizzaMania
+![Alt text](PizzaManiaScreen.png)
 ## Důležité odkazy ke studiu / projektu
 - [Zadání projektu](https://uuapp.plus4u.net/uu-dockit-maing02/4e68298f1658473e9bf5692272883290/document?documentId=63e66c5ad42df5003627e3d6) obsahuje všechny požadavky na projekt.
 - [Projektový portál](https://uuapp.plus4u.net/uu-dockit-maing02/4e68298f1658473e9bf5692272883290/document?documentId=63e670ee46a3400036cf3231) workshopu, hodnocení, harmonogramu a týmů.
