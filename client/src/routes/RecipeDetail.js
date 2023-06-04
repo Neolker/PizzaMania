@@ -41,9 +41,6 @@ function RecipeDetail() {
     }, [recipeId]);
 
     useEffect(() => {
-        setIngredientsLoadCall({
-            state: "pending",
-        });
         if (recipeLoadCall.state === "success") {
             fetch(`http://localhost:3000/ingredient/list`, {
                 method: "GET",
@@ -57,7 +54,7 @@ function RecipeDetail() {
             });
         }
 
-    }, [recipeLoadCall])
+    }, [])
 
     function getInredients() {
         switch (ingredientsLoadCall.state) {
