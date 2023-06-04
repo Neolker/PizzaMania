@@ -1,9 +1,9 @@
 [
   {
     "id": "REC-e6823940",
-    "name": "Pizza Margherita EDI",
-    "description": "Klasická pizza",
-    "procedure": "Předehřejte troubu na 220 °C...",
+    "name": "Pizza Sýrový element",
+    "description": "Rajčatové sugo, cheddar, mozzarella, bazalkové pesto",
+    "procedure": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.",
     "ingredients": [
       {
         "id": "ING-239e0305",
@@ -17,9 +17,9 @@
   },
   {
     "id": "REC-1f1ddb76",
-    "name": "Pizza XXX",
-    "description": "Klasická pizza",
-    "procedure": "Předehřejte troubu na 220 °C...",
+    "name": "Pizza Souhvězdí šunky",
+    "description": "Rajčatové sugo, cheddar, mozzarella, šunka, rukola",
+    "procedure": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.",
     "ingredients": [
       {
         "id": "ING-239e0305",
@@ -33,8 +33,8 @@
   },
   {
     "id": "REC-979091fe",
-    "name": "Pizza Hawaii Best",
-    "description": "Klasická pizza v Itálii :D",
+    "name": "Pizza MARSalame",
+    "description": "Rajčatové sugo, cheddar, mozzarella, paprikový salám",
     "procedure": "Předehřejte troubu na 220 °C...",
     "ingredients": [
       {
@@ -53,8 +53,8 @@
   },
   {
     "id": "REC-2fb0cc21",
-    "name": "Pizza Salami",
-    "description": "Klasická pizza v Itálii :D",
+    "name": "Pizza Meatroid",
+    "description": "Rajčatové sugo, cheddar, mozzarella, šunka, chorizo, slanina",
     "procedure": "Předehřejte troubu na 220 °C...",
     "ingredients": [
       {
@@ -73,8 +73,8 @@
   },
   {
     "id": "REC-3642f413",
-    "name": "Pizza 123",
-    "description": "Klasická pizza v Itálii :D",
+    "name": "Pizza Bacondrom",
+    "description": "Rajčatové sugo, cheddar, mozzarella, slanina, cibule",
     "procedure": "Předehřejte troubu na 220 °C...",
     "ingredients": [
       {
@@ -93,8 +93,8 @@
   },
   {
     "id": "REC-387eff45",
-    "name": "Pizza 456",
-    "description": "Klasická pizza v Itálii :D",
+    "name": "Pizza BBQ Houston",
+    "description": "BBQ omáčka, cheddar, mozzarella, kukuřice, olivy",
     "procedure": "Předehřejte troubu na 220 °C...",
     "ingredients": [
       {
@@ -113,8 +113,8 @@
   },
   {
     "id": "REC-df3872b9",
-    "name": "Pizza 789",
-    "description": "Klasická pizza v Itálii :D",
+    "name": "Pizza Apollo 4maggi",
+    "description": "Smetana, cheddar, mozzarella, parmazán, blue cheese",
     "procedure": "Předehřejte troubu na 220 °C...",
     "ingredients": [
       {
@@ -133,8 +133,8 @@
   },
   {
     "id": "REC-4332f685",
-    "name": "Pizza 789",
-    "description": "Klasická pizza v Itálii :DKlasická pizza v Itálii :DKlasická pizza v Itálii :DKlasická pizza v Itálii :D",
+    "name": "Pizza AnaNASA",
+    "description": "Rajčatové sugo, cheddar, mozzarella, šunka, ananas, petrželka",
     "procedure": "Předehřejte troubu na 220 °C...",
     "ingredients": [
       {
@@ -153,8 +153,8 @@
   },
   {
     "id": "REC-a1e6279e",
-    "name": "Pizza El Nino",
-    "description": "Klasická pizza v Itálii :DK",
+    "name": "Pizza AnaNASA HOT",
+    "description": "Rajčatové sugo, cheddar, mozzarella, šunka, chilli , ananas",
     "procedure": "Předehřejte troubu na 220 °C...",
     "ingredients": [
       {
@@ -173,8 +173,8 @@
   },
   {
     "id": "REC-d7d20cb4",
-    "name": "test",
-    "description": "res",
+    "name": "Pizza Piggynaut",
+    "description": "BBQ, cheddar, mozzarella, trhané vepřové maso, cibule, pažitka",
     "procedure": "test",
     "ingredients": [
       {
